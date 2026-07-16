@@ -142,3 +142,171 @@ body{
 .stat-card p{
     margin: 0;
 }
+
+.bus-dashboard{
+    padding: 60px 40px;
+    text-align: center;
+    background: #f8fafc;
+}
+
+
+.bus-dashboard h2{
+    font-size: 36px;
+    color: #0f172a;
+    margin-bottom: 40px;
+}
+
+
+.bus-container{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+
+.bus-card{
+    width: 300px;
+    padding: 25px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    text-align: left;
+    transition: 0.3s;
+}
+
+
+.bus-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+
+.bus-card h3{
+    color: #2563eb;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+
+.bus-card p{
+    color: #334155;
+    font-size: 15px;
+    margin: 12px 0;
+}
+
+
+.bus-card button{
+    margin-top: 15px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.bus-card button:hover{
+    background: #1d4ed8;
+    transform: scale(1.05);
+}
+
+.bus-dashboard{
+    padding: 70px 40px;
+    background: #f8fafc;
+    text-align: center;
+}
+
+
+.bus-dashboard h2{
+    font-size: 36px;
+    color: #0f172a;
+    margin-bottom: 45px;
+}
+
+
+.bus-container{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+
+.bus-card{
+    width: 330px;
+    padding: 28px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(15,23,42,0.12);
+    transition: 0.3s ease;
+    text-align: left;
+}
+
+
+.bus-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(15,23,42,0.18);
+}
+
+
+.bus-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+
+.bus-header h3{
+    font-size: 22px;
+    color: #2563eb;
+}
+
+
+.status{
+    background: #dcfce7;
+    color: #16a34a;
+    padding: 7px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.bus-info p{
+    color: #475569;
+    font-size: 15px;
+    margin: 18px 0;
+    line-height: 1.5;
+}
+
+
+.bus-info i{
+    color: #2563eb;
+    margin-right: 10px;
+}
+
+
+.bus-card button{
+    width: 100%;
+    margin-top: 15px;
+    padding: 13px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg,#2563eb,#06b6d4);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.bus-card button:hover{
+    transform: scale(1.05);
+}
