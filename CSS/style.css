@@ -585,3 +585,13 @@ body {
     color:#ef4444;
 
 }
+
+.bus-card{
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.bus-card button{
+    margin-top: auto;
+}
