@@ -17,6 +17,28 @@ const busData = [
     { name: "Ichak", bus: "Bus 3" }
 ];
 
+const liveBusData = {
+
+    bus1: {
+        location: "Market",
+        eta: 5,
+        status: "Running"
+    },
+
+    bus2: {
+        location: "Jhanda Chowk",
+        eta: 8,
+        status: "Delayed"
+    },
+
+    bus3: {
+        location: "Ichak",
+        eta: 12,
+        status: "Offline"
+    }
+
+};
+
 function searchBus() {
 
     const value = searchInput.value.toLowerCase();
@@ -25,21 +47,21 @@ function searchBus() {
     bus2.style.display = "none";
     bus3.style.display = "none";
 
-   if (value.includes("1") || "market".includes(value)) {
-    bus1.style.display = "block";
-}
+    if (value.includes("1") || "market".includes(value)) {
+        bus1.style.display = "block";
+    }
 
-if (
-    value.includes("2") ||
-    "jhanda".includes(value) ||
-    "jhanda chowk".includes(value)
-) {
-    bus2.style.display = "block";
-}
+    if (
+        value.includes("2") ||
+        "jhanda".includes(value) ||
+        "jhanda chowk".includes(value)
+    ) {
+        bus2.style.display = "block";
+    }
 
-if (value.includes("3") || "ichak".includes(value)) {
-    bus3.style.display = "block";
-}
+    if (value.includes("3") || "ichak".includes(value)) {
+        bus3.style.display = "block";
+    }
 }
 
 searchBtn.addEventListener("click", searchBus);
@@ -102,73 +124,113 @@ const modalEta = document.getElementById("modalEta");
 const modalStatus = document.getElementById("modalStatus");
 
 
-function showBusDetails(title, route, location, eta){
+function showBusDetails(title, route, location, eta, status) {
 
     busModal.style.display = "flex";
 
     modalTitle.innerHTML = "🚌 " + title;
 
-    modalRoute.innerHTML = "🛣 Route: " + route;
+    modalRoute.innerHTML = "🛣 Route:<br>" + route;
 
-    modalLocation.innerHTML = "📍 Location: " + location;
+    modalLocation.innerHTML = "📍 Current Location:<br>" + location;
 
-    modalEta.innerHTML = "⏱ ETA: " + eta;
+    modalEta.innerHTML = "⏱ ETA:<br>" + eta;
 
-    modalStatus.innerHTML = "🟢 Status: Running";
+    modalStatus.innerHTML = status;
 
 }
 
 
-track1.addEventListener("click", function(){
-
+track1.addEventListener("click", function () {
+    currentBus = "bus1";
     showBusDetails(
         "Bus 1",
         "Market → AISECT University",
-        "Market",
-        "5 min"
+        liveBusData.bus1.location,
+        etaTime.bus1 + " min",
+        "Status: " + liveBusData.bus1.status + " 🟢"
     );
 
 });
 
 
-track2.addEventListener("click", function(){
-
+track2.addEventListener("click", function () {
+    currentBus = "bus2";
     showBusDetails(
         "Bus 2",
         "Jhanda Chowk → AISECT University",
-        "Jhanda Chowk",
-        "8 min"
+        liveBusData.bus2.location,
+        etaTime.bus2 + " min",
+        "Status: " + liveBusData.bus2.status + " 🟡"
     );
 
 });
 
 
-track3.addEventListener("click", function(){
-
+track3.addEventListener("click", function () {
+    currentBus = "bus3";
     showBusDetails(
         "Bus 3",
         "Ichak → AISECT University",
-        "Ichak",
-        "12 min"
+        liveBusData.bus3.location,
+        etaTime.bus3 + " min",
+        "Status: " + liveBusData.bus3.status + " 🔴"
     );
 
 });
 
 
 
-closeModal.addEventListener("click", function(){
+closeModal.addEventListener("click", function () {
 
     busModal.style.display = "none";
 
 });
 
 
-busModal.addEventListener("click", function(e){
+busModal.addEventListener("click", function (e) {
 
-    if(e.target === busModal){
+    if (e.target === busModal) {
 
         busModal.style.display = "none";
 
     }
 
 });
+
+// Live ETA Update
+
+let currentBus = null;
+
+let etaTime = {
+    bus1: 5,
+    bus2: 8,
+    bus3: 12
+};
+
+
+setInterval(function () {
+
+    if (etaTime.bus1 > 0) {
+        etaTime.bus1--;
+        document.getElementById("eta1").innerHTML = etaTime.bus1 + " min";
+    }
+
+
+    if (etaTime.bus2 > 0) {
+        etaTime.bus2--;
+        document.getElementById("eta2").innerHTML = etaTime.bus2 + " min";
+    }
+
+
+    if (etaTime.bus3 > 0) {
+        etaTime.bus3--;
+        document.getElementById("eta3").innerHTML = etaTime.bus3 + " min";
+    }
+    if(currentBus){
+
+    modalEta.innerHTML = "⏱ ETA:<br>" + etaTime[currentBus] + " min";
+
+}
+
+}, 60000);

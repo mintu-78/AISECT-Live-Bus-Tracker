@@ -103,7 +103,9 @@
 
                 <div class="bus-header">
                     <h3>🚌 Bus 1</h3>
-                    <span class="status">Running</span>
+                    <span class="status running" id="status1">
+                        Running
+                    </span>
                 </div>
 
                 <div class="bus-info">
@@ -116,6 +118,10 @@
                     <p>
                         <i class="fa-solid fa-location-dot"></i>
                         Current Location: Market
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-clock"></i>
+                        ETA: <span id="eta1">5 min</span>
                     </p>
 
                 </div>
@@ -132,7 +138,9 @@
 
                 <div class="bus-header">
                     <h3>🚌 Bus 2</h3>
-                    <span class="status">Running</span>
+                    <span class="status delayed" id="status2">
+                        Delayed
+                    </span>
                 </div>
 
                 <div class="bus-info">
@@ -166,7 +174,9 @@
 
                 <div class="bus-header">
                     <h3>🚌 Bus 3</h3>
-                    <span class="status">Running</span>
+                    <span class="status offline" id="status3">
+                        Offline
+                    </span>
                 </div>
 
                 <div class="bus-info">
@@ -177,19 +187,18 @@
                     </p>
 
                     <p>
-                        <i class="fa-solid fa-clock"></i>
-                        ETA: <span id="eta3">12 min</span>
-                    </p>
-
-                    <p>
                         <i class="fa-solid fa-location-dot"></i>
                         Current Location: Ichak
                     </p>
 
                     <p>
                         <i class="fa-solid fa-clock"></i>
-                        ETA: <span id="eta1">5 min</span>
+                        ETA: <span id="eta3">12 min</span>
                     </p>
+
+
+
+
 
                 </div>
 
@@ -236,29 +245,29 @@
 
     <div class="bus-modal" id="busModal">
 
-    <div class="modal-content">
+        <div class="modal-content">
 
-        <span id="closeModal">&times;</span>
+            <span id="closeModal">&times;</span>
 
-        <h2 id="modalTitle">
-            🚌 Bus Details
-        </h2>
+            <h2 id="modalTitle">
+                🚌 Bus Details
+            </h2>
 
-        <div class="modal-info">
+            <div class="modal-info">
 
-            <p id="modalRoute"></p>
+                <p id="modalRoute"></p>
 
-            <p id="modalLocation"></p>
+                <p id="modalLocation"></p>
 
-            <p id="modalEta"></p>
+                <p id="modalEta"></p>
 
-            <p id="modalStatus"></p>
+                <p id="modalStatus"></p>
+
+            </div>
 
         </div>
 
     </div>
-
-</div>
 
     <script src="js/app.js"></script>
 

@@ -595,3 +595,25 @@ body {
 .bus-card button{
     margin-top: auto;
 }
+
+
+/* ==========================
+   Bus Status Colors
+========================== */
+
+.status.running{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+
+.status.delayed{
+    background:#fef3c7;
+    color:#d97706;
+}
+
+
+.status.offline{
+    background:#fee2e2;
+    color:#dc2626;
+}
