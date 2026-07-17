@@ -371,7 +371,7 @@ body {
 
 .college{
     position: absolute;
-    top: 220px;
+    top: 300px;
     left: 50%;
     transform: translateX(-50%);
     background: #2563eb;
@@ -388,21 +388,22 @@ body {
     border-radius: 30px;
     box-shadow: 0 8px 20px rgba(0,0,0,.15);
     font-weight: 600;
+    z-index:2;
 }
 
 .bus-one{
-    top:80px;
-    left:120px;
+    top:100px;
+    left:140px;
 }
 
 .bus-two{
-    top:100px;
+    top:200px;
     right:120px;
 }
 
 .bus-three{
-    bottom:80px;
-    left:180px;
+    bottom:130px;
+    left:220px;
 }
 
 /* ===========================
@@ -616,4 +617,50 @@ body {
 .status.offline{
     background:#fee2e2;
     color:#dc2626;
+}
+
+/* =========================
+   Route Lines
+========================= */
+
+.route-line{
+    position:absolute;
+    height:4px;
+    background:#2563eb;
+    border-radius:10px;
+    z-index:1;
+}
+
+
+.line-one{
+    width:300px;
+    top:120px;
+    left:150px;
+    transform:rotate(20deg);
+}
+
+
+.line-two{
+    width:350px;
+    top:230px;
+    left:200px;
+    transform:rotate(-10deg);
+}
+
+
+.line-three{
+    width:280px;
+    top:350px;
+    left:250px;
+    transform:rotate(15deg);
+}
+
+
+.bus-marker{
+    background:white;
+    padding:12px 20px;
+    border-radius:30px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    font-weight:600;
+    z-index:5;
 }
