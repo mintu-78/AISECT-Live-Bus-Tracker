@@ -404,3 +404,74 @@ body {
     bottom:80px;
     left:180px;
 }
+
+/* ===========================
+   Bus Animation
+=========================== */
+
+@keyframes moveBusOne {
+
+    0%{
+        left:120px;
+    }
+
+    50%{
+        left:300px;
+    }
+
+    100%{
+        left:120px;
+    }
+
+}
+
+.bus-one{
+
+    animation: moveBusOne 6s infinite ease-in-out;
+
+}
+@keyframes moveBusTwo {
+
+    0%{
+        top:100px;
+    }
+
+    50%{
+        top:220px;
+    }
+
+    100%{
+        top:100px;
+    }
+
+}
+
+.bus-two{
+
+    animation: moveBusTwo 5s infinite ease-in-out;
+
+}
+@keyframes moveBusThree {
+
+    0%{
+        left:180px;
+        bottom:80px;
+    }
+
+    50%{
+        left:320px;
+        bottom:180px;
+    }
+
+    100%{
+        left:180px;
+        bottom:80px;
+    }
+
+}
+
+.bus-three{
+
+    animation: moveBusThree 7s infinite ease-in-out;
+
+}
