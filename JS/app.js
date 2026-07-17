@@ -86,3 +86,48 @@ searchInput.addEventListener("input", function () {
     }
 
 });
+
+// Track Bus Button Functionality
+
+const track1 = document.getElementById("track1");
+const track2 = document.getElementById("track2");
+const track3 = document.getElementById("track3");
+
+
+track1.addEventListener("click", function(){
+
+    alert(
+        "🚌 Bus 1\n\n" +
+        "Route: Market → AISECT University\n\n" +
+        "Current Location: Market\n\n" +
+        "ETA: 5 min\n\n" +
+        "Status: Running"
+    );
+
+});
+
+
+track2.addEventListener("click", function(){
+
+    alert(
+        "🚌 Bus 2\n\n" +
+        "Route: Jhanda Chowk → AISECT University\n\n" +
+        "Current Location: Jhanda Chowk\n\n" +
+        "ETA: 8 min\n\n" +
+        "Status: Running"
+    );
+
+});
+
+
+track3.addEventListener("click", function(){
+
+    alert(
+        "🚌 Bus 3\n\n" +
+        "Route: Ichak → AISECT University\n\n" +
+        "Current Location: Ichak\n\n" +
+        "ETA: 12 min\n\n" +
+        "Status: Running"
+    );
+
+});
