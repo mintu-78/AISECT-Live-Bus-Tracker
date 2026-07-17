@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>   
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
 <body>
 
     <header>
@@ -38,156 +41,158 @@
 
     <section class="hero">
 
-    <div class="hero-content">
+        <div class="hero-content">
 
-        <h1>
-            AISECT Live Bus Tracker
-        </h1>
+            <h1>
+                AISECT Live Bus Tracker
+            </h1>
 
-        <p>
-            Track all 6 college buses live with route,
-            location and arrival time.
-        </p>
+            <p>
+                Track all 6 college buses live with route,
+                location and arrival time.
+            </p>
 
-        <div class="search-box">
+            <div class="search-box">
 
-            <input type="text" placeholder="Enter Bus Number">
+                <input type="text" id="searchInput" placeholder="Search Bus or Location">
 
-            <button>
-                <i class="fa-solid fa-magnifying-glass"></i>
-                Search Bus
-            </button>
+                <button id="searchBtn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Search Bus
+                </button>
+                <div id="suggestions" class="suggestions"></div>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div class="stat-card">
+                    <h2>🚌 6+</h2>
+                    <p>College Buses</p>
+                </div>
+
+
+                <div class="stat-card">
+                    <h2>📍 Live</h2>
+                    <p>Location Tracking</p>
+                </div>
+
+
+                <div class="stat-card">
+                    <h2>⏱️ ETA</h2>
+                    <p>Arrival Time</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    <section class="bus-dashboard">
+
+        <h2>Live Bus Status</h2>
+
+        <div class="bus-container">
+
+
+            <div class="bus-card" id="bus1">
+
+                <div class="bus-header">
+                    <h3>🚌 Bus 1</h3>
+                    <span class="status">Running</span>
+                </div>
+
+                <div class="bus-info">
+
+                    <p>
+                        <i class="fa-solid fa-route"></i>
+                        Market → AISECT University
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Current Location: Market
+                    </p>
+
+                </div>
+
+                <button>
+                    Track Bus
+                </button>
+
+            </div>
+
+
+
+            <div class="bus-card" id="bus2">
+
+                <div class="bus-header">
+                    <h3>🚌 Bus 2</h3>
+                    <span class="status">Running</span>
+                </div>
+
+                <div class="bus-info">
+
+                    <p>
+                        <i class="fa-solid fa-route"></i>
+                        Jhanda Chowk → AISECT University
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Current Location: Jhanda Chowk
+                    </p>
+
+                </div>
+
+                <button>
+                    Track Bus
+                </button>
+
+            </div>
+
+
+
+
+            <div class="bus-card" id="bus3">
+
+                <div class="bus-header">
+                    <h3>🚌 Bus 3</h3>
+                    <span class="status">Running</span>
+                </div>
+
+                <div class="bus-info">
+
+                    <p>
+                        <i class="fa-solid fa-route"></i>
+                        Ichak → AISECT University
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Current Location: Ichak
+                    </p>
+
+                </div>
+
+                <button>
+                    Track Bus
+                </button>
+
+            </div>
+
 
         </div>
 
-
-        <div class="hero-stats">
-
-            <div class="stat-card">
-                <h2>🚌 6+</h2>
-                <p>College Buses</p>
-            </div>
-
-
-            <div class="stat-card">
-                <h2>📍 Live</h2>
-                <p>Location Tracking</p>
-            </div>
-
-
-            <div class="stat-card">
-                <h2>⏱️ ETA</h2>
-                <p>Arrival Time</p>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-
-
-
-<section class="bus-dashboard">
-
-    <h2>Live Bus Status</h2>
-
-    <div class="bus-container">
-
-
-        <div class="bus-card">
-
-            <div class="bus-header">
-                <h3>🚌 Bus 1</h3>
-                <span class="status">Running</span>
-            </div>
-
-            <div class="bus-info">
-
-                <p>
-                    <i class="fa-solid fa-route"></i>
-                    Market → AISECT University
-                </p>
-
-                <p>
-                    <i class="fa-solid fa-location-dot"></i>
-                    Current Location: Market
-                </p>
-
-            </div>
-
-            <button>
-                Track Bus
-            </button>
-
-        </div>
-
-
-
-        <div class="bus-card">
-
-            <div class="bus-header">
-                <h3>🚌 Bus 2</h3>
-                <span class="status">Running</span>
-            </div>
-
-            <div class="bus-info">
-
-                <p>
-                    <i class="fa-solid fa-route"></i>
-                    Jhanda Chowk → AISECT University
-                </p>
-
-                <p>
-                    <i class="fa-solid fa-location-dot"></i>
-                    Current Location: Jhanda Chowk
-                </p>
-
-            </div>
-
-            <button>
-                Track Bus
-            </button>
-
-        </div>
-
-
-
-
-        <div class="bus-card">
-
-            <div class="bus-header">
-                <h3>🚌 Bus 3</h3>
-                <span class="status">Running</span>
-            </div>
-
-            <div class="bus-info">
-
-                <p>
-                    <i class="fa-solid fa-route"></i>
-                    Ichak → AISECT University
-                </p>
-
-                <p>
-                    <i class="fa-solid fa-location-dot"></i>
-                    Current Location: Ichak
-                </p>
-
-            </div>
-
-            <button>
-                Track Bus
-            </button>
-
-        </div>
-
-
-    </div>
-
-</section>
+    </section>
 
     <script src="js/app.js"></script>
 
 
 </body>
+
 </html>
