@@ -7,6 +7,10 @@ const bus3 = document.getElementById("bus3");
 
 const suggestions = document.getElementById("suggestions");
 
+const track1 = document.getElementById("track1");
+const track2 = document.getElementById("track2");
+const track3 = document.getElementById("track3");
+
 const busData = [
     { name: "Market", bus: "Bus 1" },
     { name: "Jhanda Chowk", bus: "Bus 2" },
@@ -87,21 +91,41 @@ searchInput.addEventListener("input", function () {
 
 });
 
-// Track Bus Button Functionality
 
-const track1 = document.getElementById("track1");
-const track2 = document.getElementById("track2");
-const track3 = document.getElementById("track3");
+const busModal = document.getElementById("busModal");
+const closeModal = document.getElementById("closeModal");
+
+const modalTitle = document.getElementById("modalTitle");
+const modalRoute = document.getElementById("modalRoute");
+const modalLocation = document.getElementById("modalLocation");
+const modalEta = document.getElementById("modalEta");
+const modalStatus = document.getElementById("modalStatus");
+
+
+function showBusDetails(title, route, location, eta){
+
+    busModal.style.display = "flex";
+
+    modalTitle.innerHTML = "🚌 " + title;
+
+    modalRoute.innerHTML = "🛣 Route: " + route;
+
+    modalLocation.innerHTML = "📍 Location: " + location;
+
+    modalEta.innerHTML = "⏱ ETA: " + eta;
+
+    modalStatus.innerHTML = "🟢 Status: Running";
+
+}
 
 
 track1.addEventListener("click", function(){
 
-    alert(
-        "🚌 Bus 1\n\n" +
-        "Route: Market → AISECT University\n\n" +
-        "Current Location: Market\n\n" +
-        "ETA: 5 min\n\n" +
-        "Status: Running"
+    showBusDetails(
+        "Bus 1",
+        "Market → AISECT University",
+        "Market",
+        "5 min"
     );
 
 });
@@ -109,12 +133,11 @@ track1.addEventListener("click", function(){
 
 track2.addEventListener("click", function(){
 
-    alert(
-        "🚌 Bus 2\n\n" +
-        "Route: Jhanda Chowk → AISECT University\n\n" +
-        "Current Location: Jhanda Chowk\n\n" +
-        "ETA: 8 min\n\n" +
-        "Status: Running"
+    showBusDetails(
+        "Bus 2",
+        "Jhanda Chowk → AISECT University",
+        "Jhanda Chowk",
+        "8 min"
     );
 
 });
@@ -122,12 +145,30 @@ track2.addEventListener("click", function(){
 
 track3.addEventListener("click", function(){
 
-    alert(
-        "🚌 Bus 3\n\n" +
-        "Route: Ichak → AISECT University\n\n" +
-        "Current Location: Ichak\n\n" +
-        "ETA: 12 min\n\n" +
-        "Status: Running"
+    showBusDetails(
+        "Bus 3",
+        "Ichak → AISECT University",
+        "Ichak",
+        "12 min"
     );
+
+});
+
+
+
+closeModal.addEventListener("click", function(){
+
+    busModal.style.display = "none";
+
+});
+
+
+busModal.addEventListener("click", function(e){
+
+    if(e.target === busModal){
+
+        busModal.style.display = "none";
+
+    }
 
 });
