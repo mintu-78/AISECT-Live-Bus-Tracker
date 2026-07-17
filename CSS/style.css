@@ -337,3 +337,70 @@ body {
 .suggestion-item:hover{
     background:#f1f5f9;
 }
+
+/* ===========================
+   Live Map Section
+=========================== */
+
+.map-section{
+    padding: 80px 40px;
+    background: #eef4ff;
+    text-align: center;
+}
+
+.map-section h2{
+    font-size: 36px;
+    color: #0f172a;
+    margin-bottom: 40px;
+}
+
+.map-container{
+    display: flex;
+    justify-content: center;
+}
+
+.map-placeholder{
+    width: 900px;
+    height: 500px;
+    background: white;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,.15);
+    overflow: hidden;
+}
+
+.college{
+    position: absolute;
+    top: 220px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2563eb;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+.bus-marker{
+    position: absolute;
+    background: white;
+    padding: 10px 16px;
+    border-radius: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    font-weight: 600;
+}
+
+.bus-one{
+    top:80px;
+    left:120px;
+}
+
+.bus-two{
+    top:100px;
+    right:120px;
+}
+
+.bus-three{
+    bottom:80px;
+    left:180px;
+}
