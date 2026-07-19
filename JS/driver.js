@@ -30,6 +30,14 @@ startTracking.addEventListener("click", () => {
 
             tripStatus.innerHTML = "🟢 Trip Started";
             startTracking.innerHTML = "✅ Live Tracking Started";
+            database.ref("buses/" + selectedBus).set({
+
+    latitude: lat,
+    longitude: lng,
+    status: "Running",
+    updatedAt: Date.now()
+
+});
 
         },
 
