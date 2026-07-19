@@ -227,29 +227,42 @@ setInterval(function () {
         etaTime.bus3--;
         document.getElementById("eta3").innerHTML = etaTime.bus3 + " min";
     }
-    if(currentBus){
+    if (currentBus) {
 
-    modalEta.innerHTML = "⏱ ETA:<br>" + etaTime[currentBus] + " min";
+        modalEta.innerHTML = "⏱ ETA:<br>" + etaTime[currentBus] + " min";
 
-}
+    }
 
 }, 60000);
 
-const map = L.map("map").setView([23.9956, 85.3619], 13);
+const map = L.map("map").setView([24.02044095418254, 85.48831945904158], 13);
+const busIcon = L.icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/3448/3448339.png",
+    iconSize: [40, 40],
+    iconAnchor: [20, 20]
+});
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors"
 }).addTo(map);
 
-L.marker([23.9956, 85.3619])
+L.marker([24.02044095418254, 85.48831945904158])
     .addTo(map)
     .bindPopup("🏫 AISECT University")
     .openPopup();
+const bus1Marker = L.marker([23.9900, 85.3500], {
+    icon: busIcon
+}).addTo(map);
 
-const bus1Marker = L.marker([23.9900, 85.3500]).addTo(map);
-const bus2Marker = L.marker([24.0050, 85.3650]).addTo(map);
-const bus3Marker = L.marker([24.0100, 85.3450]).addTo(map);
 
+const bus2Marker = L.marker([24.0050, 85.3650], {
+    icon: busIcon
+}).addTo(map);
+
+
+const bus3Marker = L.marker([24.0100, 85.3450], {
+    icon: busIcon
+}).addTo(map);
 bus1Marker.bindPopup("🚌 Bus 1");
 bus2Marker.bindPopup("🚌 Bus 2");
 bus3Marker.bindPopup("🚌 Bus 3");
@@ -264,11 +277,7 @@ database.ref("buses").on("value", function (snapshot) {
     bus2Marker.setLatLng([buses.bus2.lat, buses.bus2.lng]);
     bus3Marker.setLatLng([buses.bus3.lat, buses.bus3.lng]);
 
-    map.fitBounds([
-        [buses.bus1.lat, buses.bus1.lng],
-        [buses.bus2.lat, buses.bus2.lng],
-        [buses.bus3.lat, buses.bus3.lng]
-    ]);
+
 
 });
 
