@@ -1,505 +1,374 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #f5f7fb;
-}
-
-.navbar {
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 25px;
-    background: #0f172a;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
-}
-
-.logo {
-    font-size: 21px;
-    font-weight: 700;
-    color: #38bdf8;
-}
-
-.nav-links {
-    display: flex;
-    gap: 25px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 15px;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.nav-links a:hover {
-    color: #38bdf8;
-}
-
-.nav-icons {
-    display: flex;
-    gap: 18px;
-}
-
-.nav-icons i {
-    font-size: 18px;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.nav-icons i:hover {
-    color: #38bdf8;
-    transform: translateY(-3px);
-}
-
-.hero {
-    min-height: calc(100vh - 70px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px;
-    background: linear-gradient(135deg, #2563eb, #06b6d4);
-}
-
-.hero-content {
-    max-width: 900px;
-    color: white;
-}
-
-.hero-content h1 {
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.hero-content p {
-    font-size: 18px;
-    margin-bottom: 30px;
-}
-
-    .search-box {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 40px;
-    position: relative;   /* 👈 Ye line add karo */
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fb;
 }
 
 
-.search-box input {
-    width: 350px;
-    padding: 15px 20px;
-    border-radius: 30px;
-    border: none;
-    outline: none;
-    font-size: 16px;
+/* =====================
+        NAVBAR
+===================== */
+
+.navbar{
+    width:100%;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    background:#0f172a;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
 }
 
-.search-box button {
-    padding: 15px 25px;
-    border: none;
-    border-radius: 30px;
-    background: #0f172a;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
+.logo{
+    font-size:21px;
+    font-weight:700;
+    color:#38bdf8;
 }
 
-.search-box button:hover {
-    background: #020617;
-    transform: translateY(-3px);
+.nav-links{
+    display:flex;
+    gap:25px;
 }
 
-.hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    font-size:15px;
+    font-weight:500;
+    transition:.3s;
 }
 
-.stat-card {
-    width: 200px;
-    padding: 25px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.nav-links a:hover{
+    color:#38bdf8;
 }
 
-.stat-card h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
+.nav-icons{
+    display:flex;
+    gap:18px;
 }
 
-.stat-card p {
-    margin: 0;
-}
-
-.bus-dashboard {
-    padding: 60px 40px;
-    text-align: center;
-    background: #f8fafc;
+.nav-icons i{
+    color:white;
+    font-size:18px;
+    cursor:pointer;
 }
 
 
-.bus-dashboard h2 {
-    font-size: 36px;
-    color: #0f172a;
-    margin-bottom: 40px;
+
+/* =====================
+        HERO
+===================== */
+
+.hero{
+    min-height:calc(100vh - 70px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
 }
 
 
-.bus-container {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
+.hero-content{
+    max-width:900px;
+    color:white;
 }
 
 
-.bus-card {
-    width: 300px;
-    padding: 25px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-    text-align: left;
-    transition: 0.3s;
+.hero-content h1{
+    font-size:48px;
+    margin-bottom:20px;
 }
 
 
-.bus-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+.hero-content p{
+    font-size:18px;
+    margin-bottom:30px;
 }
 
 
-.bus-card h3 {
-    color: #2563eb;
-    font-size: 22px;
-    margin-bottom: 15px;
+/* =====================
+        SEARCH
+===================== */
+
+
+.search-box{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:40px;
+    position:relative;
 }
 
 
-.bus-card p {
-    color: #334155;
-    font-size: 15px;
-    margin: 12px 0;
+.search-box input{
+    width:350px;
+    padding:15px 20px;
+    border:none;
+    outline:none;
+    border-radius:30px;
+    font-size:16px;
 }
 
 
-.bus-card button {
-    margin-top: 15px;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    background: #2563eb;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
+.search-box button{
+    padding:15px 25px;
+    border:none;
+    border-radius:30px;
+    background:#0f172a;
+    color:white;
+    cursor:pointer;
 }
 
 
-.bus-card button:hover {
-    background: #1d4ed8;
-    transform: scale(1.05);
-}
-
-.bus-dashboard {
-    padding: 70px 40px;
-    background: #f8fafc;
-    text-align: center;
-}
-
-
-.bus-dashboard h2 {
-    font-size: 36px;
-    color: #0f172a;
-    margin-bottom: 45px;
-}
-
-
-.bus-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-
-.bus-card {
-    width: 330px;
-    padding: 28px;
-    background: white;
-    border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12);
-    transition: 0.3s ease;
-    text-align: left;
-}
-
-
-.bus-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.18);
-}
-
-
-.bus-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-
-.bus-header h3 {
-    font-size: 22px;
-    color: #2563eb;
-}
-
-
-.status {
-    background: #dcfce7;
-    color: #16a34a;
-    padding: 7px 15px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-
-.bus-info p {
-    color: #475569;
-    font-size: 15px;
-    margin: 18px 0;
-    line-height: 1.5;
-}
-
-
-.bus-info i {
-    color: #2563eb;
-    margin-right: 10px;
-}
-
-
-.bus-card button {
-    width: 100%;
-    margin-top: 15px;
-    padding: 13px;
-    border: none;
-    border-radius: 15px;
-    background: linear-gradient(135deg, #2563eb, #06b6d4);
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-
-.bus-card button:hover {
-    transform: scale(1.05);
-}
 
 .suggestions{
-    position: absolute;
-    top: 65px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 350px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,.15);
-    display: none;
-    overflow: hidden;
-    z-index: 1000;
+    position:absolute;
+    top:65px;
+    left:50%;
+    transform:translateX(-50%);
+    width:350px;
+    background:white;
+    border-radius:12px;
+    display:none;
+    overflow:hidden;
+    z-index:1000;
 }
 
+
 .suggestion-item{
-    padding: 14px 18px;
-    cursor: pointer;
-    color: #0f172a;
-    text-align: left;
+    padding:14px 18px;
+    cursor:pointer;
+    color:#0f172a;
 }
+
 
 .suggestion-item:hover{
     background:#f1f5f9;
 }
 
-/* ===========================
-   Live Map Section
-=========================== */
+
+
+/* =====================
+      HERO STATS
+===================== */
+
+
+.hero-stats{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+}
+
+
+.stat-card{
+    width:200px;
+    padding:25px;
+    border-radius:20px;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(10px);
+}
+
+
+
+.stat-card h2{
+    font-size:28px;
+}
+
+.stat-card p{
+    margin:0;
+}
+
+
+
+/* =====================
+      BUS DASHBOARD
+===================== */
+
+
+.bus-dashboard{
+    padding:70px 40px;
+    background:#f8fafc;
+    text-align:center;
+}
+
+
+.bus-dashboard h2{
+    font-size:36px;
+    color:#0f172a;
+    margin-bottom:45px;
+}
+
+
+.bus-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+
+.bus-card{
+
+    width:330px;
+    min-height:360px;
+    padding:28px;
+
+    background:white;
+    border-radius:25px;
+
+    box-shadow:0 15px 35px rgba(15,23,42,.12);
+
+    text-align:left;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    transition:.3s;
+}
+
+
+.bus-card:hover{
+    transform:translateY(-10px);
+}
+
+
+.bus-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+
+.bus-header h3{
+    color:#2563eb;
+    font-size:22px;
+}
+
+
+.status{
+    padding:7px 15px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+
+.bus-info p{
+
+    color:#475569;
+    margin:18px 0;
+
+}
+
+
+.bus-info i{
+    color:#2563eb;
+    margin-right:10px;
+}
+
+
+.bus-card button{
+
+    width:100%;
+    padding:13px;
+
+    border:none;
+    border-radius:15px;
+
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+
+    color:white;
+
+    cursor:pointer;
+}
+
+ 
+/* =====================
+      OPEN STREET MAP
+===================== */
+
 
 .map-section{
-    padding: 80px 40px;
-    background: #eef4ff;
-    text-align: center;
+
+    padding:80px 40px;
+
+    background:#eef4ff;
+
+    text-align:center;
+
 }
+
 
 .map-section h2{
-    font-size: 36px;
-    color: #0f172a;
-    margin-bottom: 40px;
-}
 
-.map-container{
-    display: flex;
-    justify-content: center;
-}
+    font-size:36px;
 
-.map-placeholder{
-    width: 900px;
-    height: 500px;
-    background: white;
-    border-radius: 20px;
-    position: relative;
-    box-shadow: 0 15px 35px rgba(0,0,0,.15);
-    overflow: hidden;
-}
+    color:#0f172a;
 
-.college{
-    position: absolute;
-    top: 300px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #2563eb;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 30px;
-    font-weight: 600;
-}
-
-.bus-marker{
-    position: absolute;
-    background: white;
-    padding: 10px 16px;
-    border-radius: 30px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
-    font-weight: 600;
-    z-index:2;
-}
-
-.bus-one{
-    top:100px;
-    left:140px;
-}
-
-.bus-two{
-    top:200px;
-    right:120px;
-}
-
-.bus-three{
-    bottom:130px;
-    left:220px;
-}
-
-/* ===========================
-   Bus Animation
-=========================== */
-
-@keyframes moveBusOne {
-
-    0%{
-        left:120px;
-    }
-
-    50%{
-        left:300px;
-    }
-
-    100%{
-        left:120px;
-    }
+    margin-bottom:40px;
 
 }
 
-.bus-one{
 
-    animation: moveBusOne 6s infinite ease-in-out;
+#map{
 
-}
-@keyframes moveBusTwo {
+    width:100%;
 
-    0%{
-        top:100px;
-    }
+    height:600px;
 
-    50%{
-        top:220px;
-    }
+    border-radius:20px;
 
-    100%{
-        top:100px;
-    }
+    overflow:hidden;
+
+    margin-top:30px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
 
 }
 
-.bus-two{
 
-    animation: moveBusTwo 5s infinite ease-in-out;
 
-}
-@keyframes moveBusThree {
 
-    0%{
-        left:180px;
-        bottom:80px;
-    }
+/* =====================
+       MODAL
+===================== */
 
-    50%{
-        left:320px;
-        bottom:180px;
-    }
-
-    100%{
-        left:180px;
-        bottom:80px;
-    }
-
-}
-
-.bus-three{
-
-    animation: moveBusThree 7s infinite ease-in-out;
-
-}
-
-/* ==========================
-   Bus Details Premium Modal
-========================== */
 
 .bus-modal{
 
-    position: fixed;
+    position:fixed;
+
     top:0;
     left:0;
+
     width:100%;
     height:100%;
 
-    background: rgba(15,23,42,0.65);
+    background:rgba(15,23,42,.65);
 
     display:none;
+
     justify-content:center;
+
     align-items:center;
 
     z-index:2000;
 
-    backdrop-filter: blur(8px);
+    backdrop-filter:blur(8px);
 
 }
+
 
 
 .modal-content{
@@ -512,28 +381,38 @@ body {
 
     padding:30px;
 
-    box-shadow:0 20px 50px rgba(0,0,0,0.25);
-
     position:relative;
 
-    animation: modalShow 0.3s ease;
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+    animation:modalShow .3s ease;
 
 }
+
 
 
 @keyframes modalShow{
 
+
     from{
+
         transform:translateY(-40px);
+
         opacity:0;
+
     }
 
+
     to{
+
         transform:translateY(0);
+
         opacity:1;
+
     }
 
 }
+
 
 
 .modal-content h2{
@@ -545,6 +424,7 @@ body {
     margin-bottom:25px;
 
 }
+
 
 
 .modal-info p{
@@ -562,6 +442,7 @@ body {
     font-weight:500;
 
 }
+
 
 
 #closeModal{
@@ -587,80 +468,160 @@ body {
 
 }
 
-.bus-card{
-    min-height: 360px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.bus-card button{
-    margin-top: auto;
-}
 
 
-/* ==========================
-   Bus Status Colors
-========================== */
+
+/* =====================
+      STATUS COLORS
+===================== */
+
 
 .status.running{
+
     background:#dcfce7;
+
     color:#16a34a;
+
 }
+
 
 
 .status.delayed{
+
     background:#fef3c7;
+
     color:#d97706;
+
 }
+
 
 
 .status.offline{
+
     background:#fee2e2;
+
     color:#dc2626;
-}
 
-/* =========================
-   Route Lines
-========================= */
-
-.route-line{
-    position:absolute;
-    height:4px;
-    background:#2563eb;
-    border-radius:10px;
-    z-index:1;
 }
 
 
-.line-one{
-    width:300px;
-    top:120px;
-    left:150px;
-    transform:rotate(20deg);
+
+
+
+/* =====================
+       RESPONSIVE
+===================== */
+
+
+@media(max-width:900px){
+
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+
+    .hero-content h1{
+
+        font-size:35px;
+
+    }
+
+
+    .hero-content p{
+
+        font-size:16px;
+
+    }
+
+
+    .hero-stats{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+
+    .search-box{
+
+        flex-direction:column;
+
+        align-items:center;
+
+    }
+
+
+    .search-box input{
+
+        width:90%;
+
+    }
+
+
+    .bus-card{
+
+        width:90%;
+
+    }
+
+
+    #map{
+
+        height:450px;
+
+    }
+
 }
 
 
-.line-two{
-    width:350px;
-    top:230px;
-    left:200px;
-    transform:rotate(-10deg);
-}
+
+@media(max-width:500px){
 
 
-.line-three{
-    width:280px;
-    top:350px;
-    left:250px;
-    transform:rotate(15deg);
-}
+    .navbar{
+
+        padding:0 15px;
+
+    }
 
 
-.bus-marker{
-    background:white;
-    padding:12px 20px;
-    border-radius:30px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.2);
-    font-weight:600;
-    z-index:5;
+    .logo{
+
+        font-size:18px;
+
+    }
+
+
+    .hero{
+
+        padding:25px;
+
+    }
+
+
+    .hero-content h1{
+
+        font-size:28px;
+
+    }
+
+
+    .bus-dashboard h2{
+
+        font-size:28px;
+
+    }
+
+
+    .modal-content{
+
+        width:90%;
+
+    }
+
+
 }

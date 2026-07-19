@@ -12,6 +12,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 </head>
 
 <body>
@@ -213,46 +214,11 @@
 
     </section>
 
-    <section class="map-section">
+   <section class="map-section">
 
-<h2>🗺️ Live Bus Map</h2>
+    <h2>🗺️ Live Bus Map</h2>
 
-<div class="map-container">
-
-<div class="map-placeholder">
-
-
-    <!-- Route Lines -->
-    <div class="route-line line-one"></div>
-    <div class="route-line line-two"></div>
-    <div class="route-line line-three"></div>
-
-
-    <!-- College -->
-    <div class="college">
-        📍 AISECT University
-    </div>
-
-
-    <!-- Buses -->
-    <div class="bus-marker bus-one">
-        🚌 Bus 1
-    </div>
-
-
-    <div class="bus-marker bus-two">
-        🚌 Bus 2
-    </div>
-
-
-    <div class="bus-marker bus-three">
-        🚌 Bus 3
-    </div>
-
-
-</div>
-
-</div>
+    <div id="map"></div>
 
 </section>
 
@@ -282,8 +248,15 @@
 
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script src="js/firebase.js"></script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="js/app.js"></script>
 
 </body>
 

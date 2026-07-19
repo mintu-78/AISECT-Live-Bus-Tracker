@@ -234,3 +234,22 @@ setInterval(function () {
 }
 
 }, 60000);
+
+const map = L.map("map").setView([23.9956, 85.3619], 13);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "&copy; OpenStreetMap contributors"
+}).addTo(map);
+
+L.marker([23.9956, 85.3619])
+    .addTo(map)
+    .bindPopup("🏫 AISECT University")
+    .openPopup();
+
+const bus1Marker = L.marker([23.9900, 85.3500]).addTo(map);
+const bus2Marker = L.marker([24.0050, 85.3650]).addTo(map);
+const bus3Marker = L.marker([24.0100, 85.3450]).addTo(map);
+
+bus1Marker.bindPopup("🚌 Bus 1");
+bus2Marker.bindPopup("🚌 Bus 2");
+bus3Marker.bindPopup("🚌 Bus 3");
