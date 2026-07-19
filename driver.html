@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Panel</title>
+
+    <link rel="stylesheet" href="css/driver.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="driver-container">
+
+    <h1>🚌 Driver Panel</h1>
+
+    <h2 id="busName">Bus 1</h2>
+
+   <div class="status" id="tripStatus">
+    🔴 Trip Not Started
+</div>
+
+<button id="startTracking">
+    ▶️ Start Live Tracking
+</button>
+    <div class="location-card">
+
+        <p>Latitude</p>
+        <h3 id="latitude">--</h3>
+
+        <p>Longitude</p>
+        <h3 id="longitude">--</h3>
+
+    </div>
+
+</div>
+
+<script src="js/firebase.js"></script>
+<script src="js/driver.js"></script>
+
+</body>
+</html>
