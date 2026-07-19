@@ -1,0 +1,22 @@
+{
+  "buses": {
+    "bus1": {
+      "lat": 23.9900,
+      "lng": 85.3500,
+      "location": "Market",
+      "status": "Running"
+    },
+    "bus2": {
+      "lat": 24.0100,
+      "lng": 85.3700,
+      "location": "Jhanda Chowk",
+      "status": "Delayed"
+    },
+    "bus3": {
+      "lat": 24.0100,
+      "lng": 85.3450,
+      "location": "Ichak",
+      "status": "Offline"
+    }
+  }
+}

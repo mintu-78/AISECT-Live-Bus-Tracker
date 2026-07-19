@@ -253,3 +253,24 @@ const bus3Marker = L.marker([24.0100, 85.3450]).addTo(map);
 bus1Marker.bindPopup("🚌 Bus 1");
 bus2Marker.bindPopup("🚌 Bus 2");
 bus3Marker.bindPopup("🚌 Bus 3");
+
+database.ref("buses").on("value", function (snapshot) {
+
+    const buses = snapshot.val();
+
+    if (!buses) return;
+
+    bus1Marker.setLatLng([buses.bus1.lat, buses.bus1.lng]);
+    bus2Marker.setLatLng([buses.bus2.lat, buses.bus2.lng]);
+    bus3Marker.setLatLng([buses.bus3.lat, buses.bus3.lng]);
+
+    map.fitBounds([
+        [buses.bus1.lat, buses.bus1.lng],
+        [buses.bus2.lat, buses.bus2.lng],
+        [buses.bus3.lat, buses.bus3.lng]
+    ]);
+
+});
+
+console.log(map);
+console.log(bus1Marker);
