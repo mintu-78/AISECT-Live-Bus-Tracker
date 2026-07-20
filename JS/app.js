@@ -142,6 +142,7 @@ function showBusDetails(title, route, location, eta, status) {
 
 
 track1.addEventListener("click", function () {
+    showOnlySelectedBus("bus1");
     currentBus = "bus1";
     showBusDetails(
         "Bus 1",
@@ -155,6 +156,7 @@ track1.addEventListener("click", function () {
 
 
 track2.addEventListener("click", function () {
+    showOnlySelectedBus("bus2");
     currentBus = "bus2";
     showBusDetails(
         "Bus 2",
@@ -168,6 +170,7 @@ track2.addEventListener("click", function () {
 
 
 track3.addEventListener("click", function () {
+    showOnlySelectedBus("bus3");
     currentBus = "bus3";
     showBusDetails(
         "Bus 3",
@@ -236,11 +239,14 @@ setInterval(function () {
 }, 60000);
 
 const map = L.map("map").setView([24.02044095418254, 85.48831945904158], 13);
+let routingControl = null;
 const busIcon = L.icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/512/3448/3448339.png",
     iconSize: [40, 40],
     iconAnchor: [20, 20]
+
 });
+
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors"
@@ -250,22 +256,70 @@ L.marker([24.02044095418254, 85.48831945904158])
     .addTo(map)
     .bindPopup("🏫 AISECT University")
     .openPopup();
-const bus1Marker = L.marker([23.9900, 85.3500], {
+const bus1Marker = L.marker([23.993467742407432, 85.35439829507688], {
     icon: busIcon
 }).addTo(map);
 
 
-const bus2Marker = L.marker([24.0050, 85.3650], {
+const bus2Marker = L.marker([23.991772586135575, 85.36062589572639], {
     icon: busIcon
 }).addTo(map);
 
 
-const bus3Marker = L.marker([24.0100, 85.3450], {
+const bus3Marker = L.marker([24.09048483048958, 85.42617589310147], {
     icon: busIcon
 }).addTo(map);
 bus1Marker.bindPopup("🚌 Bus 1");
 bus2Marker.bindPopup("🚌 Bus 2");
 bus3Marker.bindPopup("🚌 Bus 3");
+
+function showOnlySelectedBus(selectedBus) {
+
+    if (routingControl) {
+        map.removeControl(routingControl);
+    }
+
+    let selectedMarker;
+
+    if (selectedBus === "bus1") {
+        selectedMarker = bus1Marker;
+    } else if (selectedBus === "bus2") {
+        selectedMarker = bus2Marker;
+    } else {
+        selectedMarker = bus3Marker;
+    }
+
+    map.setView(selectedMarker.getLatLng(), 15);
+
+    selectedMarker.setZIndexOffset(1000);
+
+    routingControl = L.Routing.control({
+        waypoints: [
+            selectedMarker.getLatLng(),
+            L.latLng(24.02044095418254, 85.48831945904158)
+        ],
+        routeWhileDragging: false,
+        addWaypoints: false,
+        draggableWaypoints: false,
+        fitSelectedRoutes: true,
+        show: false,
+        createMarker: function () {
+            return null;
+        },
+        lineOptions: {
+            styles: [{
+                color: "#2196F3",
+                weight: 5,
+                opacity: 0.8
+            }]
+        }
+    }).addTo(map);
+
+    setTimeout(function () {
+        selectedMarker.openPopup();
+    }, 300);
+}
+ // <-- showOnlySelectedBus() yahin khatam hoga
 
 database.ref("buses").on("value", function (snapshot) {
 
@@ -276,8 +330,6 @@ database.ref("buses").on("value", function (snapshot) {
     bus1Marker.setLatLng([buses.bus1.lat, buses.bus1.lng]);
     bus2Marker.setLatLng([buses.bus2.lat, buses.bus2.lng]);
     bus3Marker.setLatLng([buses.bus3.lat, buses.bus3.lng]);
-
-
 
 });
 
