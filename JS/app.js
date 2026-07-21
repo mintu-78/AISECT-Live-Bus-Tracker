@@ -122,6 +122,12 @@ const modalRoute = document.getElementById("modalRoute");
 const modalLocation = document.getElementById("modalLocation");
 const modalEta = document.getElementById("modalEta");
 const modalStatus = document.getElementById("modalStatus");
+const panelBus = document.getElementById("panelBus");
+const panelLocation = document.getElementById("panelLocation");
+const panelRoute = document.getElementById("panelRoute");
+const panelEta = document.getElementById("panelEta");
+const panelStatus = document.getElementById("panelStatus");
+const panelUpdated = document.getElementById("panelUpdated");
 
 
 function showBusDetails(title, route, location, eta, status) {
@@ -139,6 +145,27 @@ function showBusDetails(title, route, location, eta, status) {
     modalStatus.innerHTML = status;
 
 }
+function updatePanel(busKey) {
+
+    const bus = liveBusData[busKey];
+
+    panelBus.innerHTML = busKey === "bus1" ? "🚌 Bus 1" :
+                         busKey === "bus2" ? "🚌 Bus 2" : "🚌 Bus 3";
+
+    panelLocation.innerHTML = bus.location;
+    panelEta.innerHTML = etaTime[busKey] + " min";
+    panelStatus.innerHTML = bus.status;
+    panelUpdated.innerHTML = new Date().toLocaleTimeString();
+
+    if (busKey === "bus1") {
+        panelRoute.innerHTML = "Market → AISECT University";
+    } else if (busKey === "bus2") {
+        panelRoute.innerHTML = "Jhanda Chowk → AISECT University";
+    } else {
+        panelRoute.innerHTML = "Ichak → AISECT University";
+    }
+
+}
 
 
 track1.addEventListener("click", function () {
@@ -151,6 +178,7 @@ track1.addEventListener("click", function () {
         etaTime.bus1 + " min",
         "Status: " + liveBusData.bus1.status + " 🟢"
     );
+    updatePanel("bus1");
 
 });
 
@@ -165,7 +193,7 @@ track2.addEventListener("click", function () {
         etaTime.bus2 + " min",
         "Status: " + liveBusData.bus2.status + " 🟡"
     );
-
+updatePanel("bus2");
 });
 
 
@@ -179,6 +207,7 @@ track3.addEventListener("click", function () {
         etaTime.bus3 + " min",
         "Status: " + liveBusData.bus3.status + " 🔴"
     );
+    updatePanel("bus3");
 
 });
 
@@ -233,6 +262,7 @@ setInterval(function () {
     if (currentBus) {
 
         modalEta.innerHTML = "⏱ ETA:<br>" + etaTime[currentBus] + " min";
+        panelEta.innerHTML = etaTime[currentBus] + " min";
 
     }
 
@@ -330,6 +360,11 @@ database.ref("buses").on("value", function (snapshot) {
     bus1Marker.setLatLng([buses.bus1.lat, buses.bus1.lng]);
     bus2Marker.setLatLng([buses.bus2.lat, buses.bus2.lng]);
     bus3Marker.setLatLng([buses.bus3.lat, buses.bus3.lng]);
+
+    if (currentBus) {
+        liveBusData[currentBus].location = buses[currentBus].location;
+        updatePanel(currentBus);
+    }
 
 });
 
