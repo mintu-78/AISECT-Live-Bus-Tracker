@@ -367,6 +367,29 @@ database.ref("buses").on("value", function (snapshot) {
     }
 
 });
+const showAllBtn = document.getElementById("showAllBtn");
+
+showAllBtn.addEventListener("click", function () {
+
+    if (routingControl) {
+        map.removeControl(routingControl);
+    }
+
+    map.setView([24.02044095418254, 85.48831945904158], 12);
+
+    const group = L.featureGroup([
+        bus1Marker,
+        bus2Marker,
+        bus3Marker
+    ]);
+
+    map.fitBounds(group.getBounds(), {
+        padding: [50, 50]
+    });
+
+    bus1Marker.openPopup();
+
+});
 
 console.log(map);
 console.log(bus1Marker);
