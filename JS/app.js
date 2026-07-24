@@ -384,6 +384,22 @@ function showOnlySelectedBus(selectedBus) {
         selectedMarker.openPopup();
     }, 300);
 }
+function updateStatus(id, status) {
+
+    const element = document.getElementById(id);
+
+    element.className = "status";
+
+    if (status === "Running") {
+        element.classList.add("running");
+    } else if (status === "Delayed") {
+        element.classList.add("delayed");
+    } else {
+        element.classList.add("offline");
+    }
+
+    element.textContent = status;
+}
  // <-- showOnlySelectedBus() yahin khatam hoga
 
 database.ref("buses").on("value", function (snapshot) {
@@ -448,10 +464,18 @@ if (buses.bus3) {
 
 }
 
-    if (currentBus && buses[currentBus]) {
-        liveBusData[currentBus].location = buses[currentBus].location;
-        updatePanel(currentBus);
-    }
+   if (currentBus && buses[currentBus]) {
+    liveBusData[currentBus].location = buses[currentBus].location;
+    updatePanel(currentBus);
+}
+
+document.getElementById("location1").textContent = liveBusData.bus1.location;
+document.getElementById("location2").textContent = liveBusData.bus2.location;
+document.getElementById("location3").textContent = liveBusData.bus3.location;
+
+updateStatus("status1", liveBusData.bus1.status);
+updateStatus("status2", liveBusData.bus2.status);
+updateStatus("status3", liveBusData.bus3.status);
 
 });
 const showAllBtn = document.getElementById("showAllBtn");

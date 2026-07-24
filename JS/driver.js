@@ -1,3 +1,4 @@
+
 const busName = document.getElementById("busName");
 
 const selectedBus = localStorage.getItem("selectedBus") || "bus1";
@@ -9,6 +10,7 @@ const stopTracking = document.getElementById("stopTracking");
 const tripStatus = document.getElementById("tripStatus");
 const latitude = document.getElementById("latitude");
 const longitude = document.getElementById("longitude");
+let watchId = null;
 
 startTracking.addEventListener("click", () => {
 
@@ -20,7 +22,7 @@ startTracking.addEventListener("click", () => {
     startTracking.disabled = true;
     startTracking.innerHTML = "📍 Getting Location...";
 
-    navigator.geolocation.watchPosition(
+ watchId = navigator.geolocation.watchPosition(
 
         function(position) {
 
@@ -65,5 +67,27 @@ startTracking.addEventListener("click", () => {
         }
 
     );
+
+});
+
+stopTracking.addEventListener("click", () => {
+
+    navigator.geolocation.clearWatch(watchId);
+
+   database.ref("buses/" + selectedBus).update({
+    lat: null,
+    lng: null,
+    status: "Offline",
+    location: "Trip Ended",
+    updatedAt: Date.now()
+});
+
+    tripStatus.innerHTML = "🔴 Trip Ended";
+
+    latitude.textContent = "--";
+    longitude.textContent = "--";
+
+    startTracking.disabled = false;
+    startTracking.innerHTML = "▶️ Start Live Tracking";
 
 });
