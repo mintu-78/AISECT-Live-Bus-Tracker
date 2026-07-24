@@ -303,6 +303,41 @@ bus1Marker.bindPopup("🚌 Bus 1");
 bus2Marker.bindPopup("🚌 Bus 2");
 bus3Marker.bindPopup("🚌 Bus 3");
 
+let busAnimations = {};
+
+function animateMarker(marker, newLat, newLng) {
+
+    const start = marker.getLatLng();
+
+    const startLat = start.lat;
+    const startLng = start.lng;
+
+    const frames = 60;
+    let current = 0;
+
+    const deltaLat = (newLat - startLat) / frames;
+    const deltaLng = (newLng - startLng) / frames;
+
+    if (busAnimations[marker._leaflet_id]) {
+        clearInterval(busAnimations[marker._leaflet_id]);
+    }
+
+    busAnimations[marker._leaflet_id] = setInterval(() => {
+
+        current++;
+
+        marker.setLatLng([
+            startLat + deltaLat * current,
+            startLng + deltaLng * current
+        ]);
+
+        if (current >= frames) {
+            clearInterval(busAnimations[marker._leaflet_id]);
+        }
+
+    }, 16);
+}
+
 function showOnlySelectedBus(selectedBus) {
 
     if (routingControl) {
@@ -354,14 +389,66 @@ function showOnlySelectedBus(selectedBus) {
 database.ref("buses").on("value", function (snapshot) {
 
     const buses = snapshot.val();
+   
 
     if (!buses) return;
+    if (buses.bus1) {
 
-    bus1Marker.setLatLng([buses.bus1.lat, buses.bus1.lng]);
-    bus2Marker.setLatLng([buses.bus2.lat, buses.bus2.lng]);
-    bus3Marker.setLatLng([buses.bus3.lat, buses.bus3.lng]);
+    liveBusData.bus1.location = buses.bus1.location;
+    liveBusData.bus1.status = buses.bus1.status;
 
-    if (currentBus) {
+}
+
+if (buses.bus2) {
+
+    liveBusData.bus2.location = buses.bus2.location;
+    liveBusData.bus2.status = buses.bus2.status;
+
+}
+
+if (buses.bus3) {
+
+    liveBusData.bus3.location = buses.bus3.location;
+    liveBusData.bus3.status = buses.bus3.status;
+
+}
+
+    if (buses.bus1) {
+
+    let lat = Number(buses.bus1.lat);
+    let lng = Number(buses.bus1.lng);
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+        animateMarker(bus1Marker, lat, lng);
+    }
+
+}
+
+
+if (buses.bus2) {
+
+    let lat = Number(buses.bus2.lat);
+    let lng = Number(buses.bus2.lng);
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+        animateMarker(bus2Marker, lat, lng);
+    }
+
+}
+
+
+if (buses.bus3) {
+
+    let lat = Number(buses.bus3.lat);
+    let lng = Number(buses.bus3.lng);
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+        animateMarker(bus3Marker, lat, lng);
+    }
+
+}
+
+    if (currentBus && buses[currentBus]) {
         liveBusData[currentBus].location = buses[currentBus].location;
         updatePanel(currentBus);
     }

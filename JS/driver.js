@@ -2,6 +2,7 @@ const busName = document.getElementById("busName");
 
 const selectedBus = localStorage.getItem("selectedBus") || "bus1";
 
+
 busName.innerText = selectedBus.replace("bus", "Bus ");
 const startTracking = document.getElementById("startTracking");
 const tripStatus = document.getElementById("tripStatus");
@@ -30,15 +31,13 @@ startTracking.addEventListener("click", () => {
 
             tripStatus.innerHTML = "🟢 Trip Started";
             startTracking.innerHTML = "✅ Live Tracking Started";
-            database.ref("buses/" + selectedBus).set({
-
-    latitude: lat,
-    longitude: lng,
+  database.ref("buses/" + selectedBus).update({
+    lat: lat,
+    lng: lng,
+  location: "Live Location",
     status: "Running",
     updatedAt: Date.now()
-
 });
-
         },
 
         function(error) {
