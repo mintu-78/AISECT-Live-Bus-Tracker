@@ -5,6 +5,7 @@ const selectedBus = localStorage.getItem("selectedBus") || "bus1";
 
 busName.innerText = selectedBus.replace("bus", "Bus ");
 const startTracking = document.getElementById("startTracking");
+const stopTracking = document.getElementById("stopTracking");
 const tripStatus = document.getElementById("tripStatus");
 const latitude = document.getElementById("latitude");
 const longitude = document.getElementById("longitude");

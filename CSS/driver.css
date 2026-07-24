@@ -80,3 +80,27 @@ body{
     transform:translateY(-3px);
     box-shadow:0 12px 25px rgba(37,99,235,.35);
 }
+
+#stopTracking{
+    width:100%;
+    margin-top:15px;
+    padding:16px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.15s;
+}
+
+#stopTracking:active{
+    transform:scale(0.97);
+    background:linear-gradient(135deg,#b91c1c,#991b1b);
+}
+
+#stopTracking:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(239,68,68,.35);
+}
