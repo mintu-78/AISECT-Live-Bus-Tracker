@@ -429,25 +429,58 @@ if (buses.bus3) {
 
 }
 
-    if (buses.bus1) {
+if (buses.bus1) {
 
-    let lat = Number(buses.bus1.lat);
-    let lng = Number(buses.bus1.lng);
+    if (
+        buses.bus1.status === "Offline" ||
+        buses.bus1.lat === null ||
+        buses.bus1.lng === null
+    ) {
 
-    if (!isNaN(lat) && !isNaN(lng)) {
-        animateMarker(bus1Marker, lat, lng);
+        if (map.hasLayer(bus1Marker)) {
+            map.removeLayer(bus1Marker);
+        }
+
+    } else {
+
+        if (!map.hasLayer(bus1Marker)) {
+            bus1Marker.addTo(map);
+        }
+
+        animateMarker(
+            bus1Marker,
+            Number(buses.bus1.lat),
+            Number(buses.bus1.lng)
+        );
+
     }
 
 }
 
-
 if (buses.bus2) {
 
-    let lat = Number(buses.bus2.lat);
-    let lng = Number(buses.bus2.lng);
+    if (
+        buses.bus2.status === "Offline" ||
+        buses.bus2.lat === null ||
+        buses.bus2.lng === null
+    ) {
 
-    if (!isNaN(lat) && !isNaN(lng)) {
-        animateMarker(bus2Marker, lat, lng);
+        if (map.hasLayer(bus2Marker)) {
+            map.removeLayer(bus2Marker);
+        }
+
+    } else {
+
+        if (!map.hasLayer(bus2Marker)) {
+            bus2Marker.addTo(map);
+        }
+
+        animateMarker(
+            bus2Marker,
+            Number(buses.bus2.lat),
+            Number(buses.bus2.lng)
+        );
+
     }
 
 }
@@ -455,11 +488,28 @@ if (buses.bus2) {
 
 if (buses.bus3) {
 
-    let lat = Number(buses.bus3.lat);
-    let lng = Number(buses.bus3.lng);
+    if (
+        buses.bus3.status === "Offline" ||
+        buses.bus3.lat === null ||
+        buses.bus3.lng === null
+    ) {
 
-    if (!isNaN(lat) && !isNaN(lng)) {
-        animateMarker(bus3Marker, lat, lng);
+        if (map.hasLayer(bus3Marker)) {
+            map.removeLayer(bus3Marker);
+        }
+
+    } else {
+
+        if (!map.hasLayer(bus3Marker)) {
+            bus3Marker.addTo(map);
+        }
+
+        animateMarker(
+            bus3Marker,
+            Number(buses.bus3.lat),
+            Number(buses.bus3.lng)
+        );
+
     }
 
 }
