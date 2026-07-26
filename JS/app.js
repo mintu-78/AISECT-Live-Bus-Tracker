@@ -241,32 +241,32 @@ let etaTime = {
 };
 
 
-setInterval(function () {
+// setInterval(function () {
 
-    if (etaTime.bus1 > 0) {
-        etaTime.bus1--;
-        document.getElementById("eta1").innerHTML = etaTime.bus1 + " min";
-    }
-
-
-    if (etaTime.bus2 > 0) {
-        etaTime.bus2--;
-        document.getElementById("eta2").innerHTML = etaTime.bus2 + " min";
-    }
+//     if (etaTime.bus1 > 0) {
+//         etaTime.bus1--;
+//         document.getElementById("eta1").innerHTML = etaTime.bus1 + " min";
+//     }
 
 
-    if (etaTime.bus3 > 0) {
-        etaTime.bus3--;
-        document.getElementById("eta3").innerHTML = etaTime.bus3 + " min";
-    }
-    if (currentBus) {
+//     if (etaTime.bus2 > 0) {
+//         etaTime.bus2--;
+//         document.getElementById("eta2").innerHTML = etaTime.bus2 + " min";
+//     }
 
-        modalEta.innerHTML = "⏱ ETA:<br>" + etaTime[currentBus] + " min";
-        panelEta.innerHTML = etaTime[currentBus] + " min";
 
-    }
+//     if (etaTime.bus3 > 0) {
+//         etaTime.bus3--;
+//         document.getElementById("eta3").innerHTML = etaTime.bus3 + " min";
+//     }
+//     if (currentBus) {
 
-}, 60000);
+//         modalEta.innerHTML = "⏱ ETA:<br>" + etaTime[currentBus] + " min";
+//         panelEta.innerHTML = etaTime[currentBus] + " min";
+
+//     }
+
+// }, 60000);
 
 const map = L.map("map").setView([24.02044095418254, 85.48831945904158], 13);
 let routingControl = null;
@@ -336,6 +336,20 @@ function animateMarker(marker, newLat, newLng) {
         }
 
     }, 16);
+}
+const universityLat = 24.02044095418254;
+const universityLng = 85.48831945904158;
+
+function calculateETA(lat, lng) {
+
+    const distance = map.distance(
+        [lat, lng],
+        [universityLat, universityLng]
+    );
+
+    const speed = 400;
+
+    return Math.max(1, Math.ceil(distance / speed));
 }
 
 function showOnlySelectedBus(selectedBus) {
@@ -447,12 +461,24 @@ if (buses.bus1) {
             bus1Marker.addTo(map);
         }
 
-        animateMarker(
-            bus1Marker,
-            Number(buses.bus1.lat),
-            Number(buses.bus1.lng)
-        );
+      animateMarker(
+    bus1Marker,
+    Number(buses.bus1.lat),
+    Number(buses.bus1.lng)
+);
 
+etaTime.bus1 = calculateETA(
+    Number(buses.bus1.lat),
+    Number(buses.bus1.lng)
+);
+
+document.getElementById("eta1").textContent =
+    etaTime.bus1 + " min";
+
+if (currentBus === "bus1") {
+    modalEta.innerHTML = "⏱ ETA:<br>" + etaTime.bus1 + " min";
+    panelEta.innerHTML = etaTime.bus1 + " min";
+}
     }
 
 }
@@ -476,10 +502,23 @@ if (buses.bus2) {
         }
 
         animateMarker(
-            bus2Marker,
-            Number(buses.bus2.lat),
-            Number(buses.bus2.lng)
-        );
+    bus2Marker,
+    Number(buses.bus2.lat),
+    Number(buses.bus2.lng)
+);
+
+etaTime.bus2 = calculateETA(
+    Number(buses.bus2.lat),
+    Number(buses.bus2.lng)
+);
+
+document.getElementById("eta2").textContent =
+    etaTime.bus2 + " min";
+
+if (currentBus === "bus2") {
+    modalEta.innerHTML = "⏱ ETA:<br>" + etaTime.bus2 + " min";
+    panelEta.innerHTML = etaTime.bus2 + " min";
+}
 
     }
 
@@ -505,12 +544,28 @@ if (buses.bus3) {
         }
 
         animateMarker(
-            bus3Marker,
-            Number(buses.bus3.lat),
-            Number(buses.bus3.lng)
-        );
+    bus3Marker,
+    Number(buses.bus3.lat),
+    Number(buses.bus3.lng)
+);
+
+etaTime.bus3 = calculateETA(
+    Number(buses.bus3.lat),
+    Number(buses.bus3.lng)
+);
+
+document.getElementById("eta3").textContent =
+    etaTime.bus3 + " min";
+
+if (currentBus === "bus3") {
+    modalEta.innerHTML = "⏱ ETA:<br>" + etaTime.bus3 + " min";
+    panelEta.innerHTML = etaTime.bus3 + " min";
+}
 
     }
+   
+
+
 
 }
 
