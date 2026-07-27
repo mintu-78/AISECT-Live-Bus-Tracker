@@ -150,7 +150,7 @@ function updatePanel(busKey) {
     const bus = liveBusData[busKey];
 
     panelBus.innerHTML = busKey === "bus1" ? "🚌 Bus 1" :
-                         busKey === "bus2" ? "🚌 Bus 2" : "🚌 Bus 3";
+        busKey === "bus2" ? "🚌 Bus 2" : "🚌 Bus 3";
 
     panelLocation.innerHTML = bus.location;
     panelEta.innerHTML = etaTime[busKey] + " min";
@@ -193,7 +193,7 @@ track2.addEventListener("click", function () {
         etaTime.bus2 + " min",
         "Status: " + liveBusData.bus2.status + " 🟡"
     );
-updatePanel("bus2");
+    updatePanel("bus2");
 });
 
 
@@ -351,6 +351,15 @@ function calculateETA(lat, lng) {
 
     return Math.max(1, Math.ceil(distance / speed));
 }
+function calculateDistance(lat, lng) {
+
+    const distance = map.distance(
+        [lat, lng],
+        [universityLat, universityLng]
+    );
+
+    return (distance / 1000).toFixed(1);
+}
 
 function showOnlySelectedBus(selectedBus) {
 
@@ -414,173 +423,190 @@ function updateStatus(id, status) {
 
     element.textContent = status;
 }
- // <-- showOnlySelectedBus() yahin khatam hoga
+// <-- showOnlySelectedBus() yahin khatam hoga
 
 database.ref("buses").on("value", function (snapshot) {
 
     const buses = snapshot.val();
-   
+
 
     if (!buses) return;
     if (buses.bus1) {
 
-    liveBusData.bus1.location = buses.bus1.location;
-    liveBusData.bus1.status = buses.bus1.status;
-
-}
-
-if (buses.bus2) {
-
-    liveBusData.bus2.location = buses.bus2.location;
-    liveBusData.bus2.status = buses.bus2.status;
-
-}
-
-if (buses.bus3) {
-
-    liveBusData.bus3.location = buses.bus3.location;
-    liveBusData.bus3.status = buses.bus3.status;
-
-}
-
-if (buses.bus1) {
-
-    if (
-        buses.bus1.status === "Offline" ||
-        buses.bus1.lat === null ||
-        buses.bus1.lng === null
-    ) {
-
-        if (map.hasLayer(bus1Marker)) {
-            map.removeLayer(bus1Marker);
-        }
-
-    } else {
-
-        if (!map.hasLayer(bus1Marker)) {
-            bus1Marker.addTo(map);
-        }
-
-      animateMarker(
-    bus1Marker,
-    Number(buses.bus1.lat),
-    Number(buses.bus1.lng)
-);
-
-etaTime.bus1 = calculateETA(
-    Number(buses.bus1.lat),
-    Number(buses.bus1.lng)
-);
-
-document.getElementById("eta1").textContent =
-    etaTime.bus1 + " min";
-
-if (currentBus === "bus1") {
-    modalEta.innerHTML = "⏱ ETA:<br>" + etaTime.bus1 + " min";
-    panelEta.innerHTML = etaTime.bus1 + " min";
-}
-    }
-
-}
-
-if (buses.bus2) {
-
-    if (
-        buses.bus2.status === "Offline" ||
-        buses.bus2.lat === null ||
-        buses.bus2.lng === null
-    ) {
-
-        if (map.hasLayer(bus2Marker)) {
-            map.removeLayer(bus2Marker);
-        }
-
-    } else {
-
-        if (!map.hasLayer(bus2Marker)) {
-            bus2Marker.addTo(map);
-        }
-
-        animateMarker(
-    bus2Marker,
-    Number(buses.bus2.lat),
-    Number(buses.bus2.lng)
-);
-
-etaTime.bus2 = calculateETA(
-    Number(buses.bus2.lat),
-    Number(buses.bus2.lng)
-);
-
-document.getElementById("eta2").textContent =
-    etaTime.bus2 + " min";
-
-if (currentBus === "bus2") {
-    modalEta.innerHTML = "⏱ ETA:<br>" + etaTime.bus2 + " min";
-    panelEta.innerHTML = etaTime.bus2 + " min";
-}
+        liveBusData.bus1.location = buses.bus1.location;
+        liveBusData.bus1.status = buses.bus1.status;
 
     }
 
-}
+    if (buses.bus2) {
 
-
-if (buses.bus3) {
-
-    if (
-        buses.bus3.status === "Offline" ||
-        buses.bus3.lat === null ||
-        buses.bus3.lng === null
-    ) {
-
-        if (map.hasLayer(bus3Marker)) {
-            map.removeLayer(bus3Marker);
-        }
-
-    } else {
-
-        if (!map.hasLayer(bus3Marker)) {
-            bus3Marker.addTo(map);
-        }
-
-        animateMarker(
-    bus3Marker,
-    Number(buses.bus3.lat),
-    Number(buses.bus3.lng)
-);
-
-etaTime.bus3 = calculateETA(
-    Number(buses.bus3.lat),
-    Number(buses.bus3.lng)
-);
-
-document.getElementById("eta3").textContent =
-    etaTime.bus3 + " min";
-
-if (currentBus === "bus3") {
-    modalEta.innerHTML = "⏱ ETA:<br>" + etaTime.bus3 + " min";
-    panelEta.innerHTML = etaTime.bus3 + " min";
-}
+        liveBusData.bus2.location = buses.bus2.location;
+        liveBusData.bus2.status = buses.bus2.status;
 
     }
-   
+
+    if (buses.bus3) {
+
+        liveBusData.bus3.location = buses.bus3.location;
+        liveBusData.bus3.status = buses.bus3.status;
+
+    }
+
+    if (buses.bus1) {
+
+        if (
+            buses.bus1.status === "Offline" ||
+            buses.bus1.lat === null ||
+            buses.bus1.lng === null
+        ) {
+
+            if (map.hasLayer(bus1Marker)) {
+                map.removeLayer(bus1Marker);
+            }
+
+        } else {
+
+            if (!map.hasLayer(bus1Marker)) {
+                bus1Marker.addTo(map);
+            }
+
+            animateMarker(
+                bus1Marker,
+                Number(buses.bus1.lat),
+                Number(buses.bus1.lng)
+            );
+
+            etaTime.bus1 = calculateETA(
+                Number(buses.bus1.lat),
+                Number(buses.bus1.lng)
+            );
+
+            document.getElementById("distance1").textContent =
+                calculateDistance(
+                    Number(buses.bus1.lat),
+                    Number(buses.bus1.lng)
+                ) + " km";
+
+            document.getElementById("eta1").textContent =
+                etaTime.bus1 + " min";
+            
+
+            if (currentBus === "bus1") {
+                modalEta.innerHTML = "⏱ ETA:<br>" + etaTime.bus1 + " min";
+                panelEta.innerHTML = etaTime.bus1 + " min";
+            }
+        }
+
+    }
+
+    if (buses.bus2) {
+
+        if (
+            buses.bus2.status === "Offline" ||
+            buses.bus2.lat === null ||
+            buses.bus2.lng === null
+        ) {
+
+            if (map.hasLayer(bus2Marker)) {
+                map.removeLayer(bus2Marker);
+            }
+
+        } else {
+
+            if (!map.hasLayer(bus2Marker)) {
+                bus2Marker.addTo(map);
+            }
+
+            animateMarker(
+                bus2Marker,
+                Number(buses.bus2.lat),
+                Number(buses.bus2.lng)
+            );
+
+            etaTime.bus2 = calculateETA(
+                Number(buses.bus2.lat),
+                Number(buses.bus2.lng)
+            );
+            document.getElementById("distance2").textContent =
+                calculateDistance(
+                    Number(buses.bus2.lat),
+                    Number(buses.bus2.lng)
+                ) + " km";
+
+            document.getElementById("eta2").textContent =
+                etaTime.bus2 + " min";
+
+            if (currentBus === "bus2") {
+                modalEta.innerHTML = "⏱ ETA:<br>" + etaTime.bus2 + " min";
+                panelEta.innerHTML = etaTime.bus2 + " min";
+            }
+
+        }
+
+    }
+
+
+    if (buses.bus3) {
+
+        if (
+            buses.bus3.status === "Offline" ||
+            buses.bus3.lat === null ||
+            buses.bus3.lng === null
+        ) {
+
+            if (map.hasLayer(bus3Marker)) {
+                map.removeLayer(bus3Marker);
+            }
+
+        } else {
+
+            if (!map.hasLayer(bus3Marker)) {
+                bus3Marker.addTo(map);
+            }
+
+            animateMarker(
+                bus3Marker,
+                Number(buses.bus3.lat),
+                Number(buses.bus3.lng)
+            );
+
+            etaTime.bus3 = calculateETA(
+                Number(buses.bus3.lat),
+                Number(buses.bus3.lng)
+            );
+            document.getElementById("distance3").textContent =
+                calculateDistance(
+                    Number(buses.bus3.lat),
+                    Number(buses.bus3.lng)
+                ) + " km";
+
+            document.getElementById("eta3").textContent =
+                etaTime.bus3 + " min";
+
+            if (currentBus === "bus3") {
+                modalEta.innerHTML = "⏱ ETA:<br>" + etaTime.bus3 + " min";
+                panelEta.innerHTML = etaTime.bus3 + " min";
+            }
+
+        }
 
 
 
-}
 
-   if (currentBus && buses[currentBus]) {
-    liveBusData[currentBus].location = buses[currentBus].location;
-    updatePanel(currentBus);
-}
+    }
 
-document.getElementById("location1").textContent = liveBusData.bus1.location;
-document.getElementById("location2").textContent = liveBusData.bus2.location;
-document.getElementById("location3").textContent = liveBusData.bus3.location;
+    if (currentBus && buses[currentBus]) {
+        liveBusData[currentBus].location = buses[currentBus].location;
+        updatePanel(currentBus);
+    }
 
-updateStatus("status1", liveBusData.bus1.status);
-updateStatus("status2", liveBusData.bus2.status);
-updateStatus("status3", liveBusData.bus3.status);
+    document.getElementById("location1").textContent = liveBusData.bus1.location;
+    document.getElementById("location2").textContent = liveBusData.bus2.location;
+    document.getElementById("location3").textContent = liveBusData.bus3.location;
+
+    updateStatus("status1", liveBusData.bus1.status);
+    updateStatus("status2", liveBusData.bus2.status);
+    updateStatus("status3", liveBusData.bus3.status);
 
 });
 const showAllBtn = document.getElementById("showAllBtn");
