@@ -186,7 +186,162 @@ body{
     margin:0;
 }
 
+.about{
+    padding:100px 40px;
+    background:linear-gradient(180deg,#ffffff,#f8fbff);
+    overflow:hidden;
+}
 
+.about-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:70px;
+}
+
+.about-text{
+    flex:1;
+}
+
+.about-text h2{
+    font-size:42px;
+    font-weight:700;
+    color:#0f172a;
+    line-height:1.2;
+    margin-bottom:25px;
+}
+
+.about-text h2::after{
+    content:"";
+    display:block;
+    width:75px;
+    height:5px;
+    margin-top:15px;
+    border-radius:10px;
+    background:linear-gradient(90deg,#2563eb,#06b6d4);
+}
+
+.about-text p{
+    max-width:650px;
+    color:#64748b;
+    font-size:16px;
+    line-height:1.9;
+    margin-bottom:35px;
+}
+
+.about-features{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.feature{
+    padding:20px;
+    background:rgba(255,255,255,.8);
+    border:1px solid #e2e8f0;
+    border-radius:18px;
+    color:#334155;
+    font-size:15px;
+    font-weight:600;
+    box-shadow:0 8px 25px rgba(15,23,42,.06);
+    transition:.35s ease;
+}
+
+.feature:hover{
+    transform:translateY(-6px);
+    border-color:#93c5fd;
+    box-shadow:0 18px 35px rgba(37,99,235,.14);
+}
+
+.about-image{
+    width:420px;
+    height:350px;
+    flex-shrink:0;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:35px;
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+    box-shadow:0 25px 60px rgba(37,99,235,.28);
+    overflow:hidden;
+}
+
+.about-image::before{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    top:-80px;
+    right:-70px;
+}
+
+.about-image::after{
+    content:"🚌";
+    font-size:110px;
+    filter:drop-shadow(0 15px 20px rgba(0,0,0,.2));
+    z-index:2;
+}
+
+@media(max-width:900px){
+
+    .about{
+        padding:70px 25px;
+    }
+
+    .about-container{
+        flex-direction:column;
+        text-align:center;
+        gap:45px;
+    }
+
+    .about-text h2{
+        font-size:34px;
+    }
+
+    .about-text h2::after{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .about-text p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .about-image{
+        width:100%;
+        max-width:500px;
+        height:300px;
+    }
+}
+
+@media(max-width:500px){
+
+    .about{
+        padding:60px 20px;
+    }
+
+    .about-text h2{
+        font-size:29px;
+    }
+
+    .about-features{
+        grid-template-columns:1fr;
+    }
+
+    .about-image{
+        height:250px;
+    }
+
+    .about-image::after{
+        font-size:80px;
+    }
+}
 
 /* =====================
       BUS DASHBOARD
