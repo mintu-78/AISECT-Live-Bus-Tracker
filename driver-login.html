@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Driver Login | AISECT Live Bus Tracker</title>
+
+    <link rel="stylesheet" href="css/driver-login.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- LEFT PANEL -->
+
+        <div class="left-panel">
+
+            <div class="left-content">
+
+                <div class="logo">
+                    🚌 AISECT Live Bus Tracker
+                </div>
+
+                <h1>Drive Smart.</h1>
+
+                <h2>Track Every Journey.</h2>
+
+                <p>
+                    Secure driver portal for real-time GPS tracking,
+                    trip management and live bus updates.
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Live GPS Tracking</span>
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Real Time ETA</span>
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Secure Driver Access</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Bus Image -->
+
+        
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+
+        <div class="right-panel">
+
+            <div class="login-card">
+
+                <div class="status">
+                    <i class="fa-solid fa-circle"></i>
+                    <span>System Online</span>
+                </div>
+
+                <div class="login-icon">
+                    <i class="fa-solid fa-bus"></i>
+                </div>
+
+                <h2>Welcome Back!</h2>
+
+                <p>Driver Login Portal</p>
+
+                <form id="loginForm" autocomplete="on">
+
+                    <div class="input-group">
+
+                        <label for="driverId">Driver ID</label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+                              type="text"
+                              id="driverId"
+                              name="driverId"
+                              placeholder="Enter Driver ID"
+                              autocomplete="off"
+                              autocorrect="off"
+                              autocapitalize="off"
+                              spellcheck="false"
+                              required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="password">Password</label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                          <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter Password"
+                            autocomplete="new-password"
+                            required>
+
+                            <i class="fa-solid fa-eye"
+                                id="togglePassword"></i>
+
+                        </div>
+
+                    </div>
+
+                    <div class="options">
+
+                        <label for="rememberMe">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe">
+
+                            Remember Me
+
+                        </label>
+
+                        <a href="#">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="login-btn">
+
+                        <i class="fa-solid fa-right-to-bracket"></i>
+
+                        Login to Dashboard
+
+                    </button>
+
+                </form>
+
+                <div class="bottom-text">
+                    🔒 Secure Login • Firebase Connected
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/driver.js"></script>
+
+</body>
+
+</html>
