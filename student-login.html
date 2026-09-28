@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | AISECT Live Bus Tracker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+ <link rel="stylesheet" href="css/student-login.css">
+</head>
+
+<body>
+
+    <div class="page-background">
+        <div class="grid"></div>
+        <div class="glow glow-blue"></div>
+        <div class="glow glow-purple"></div>
+    </div>
+
+    <header class="topbar">
+
+        <a href="index.html" class="brand">
+            <div class="brand-logo">
+                <i class="fa-solid fa-bus-simple"></i>
+            </div>
+
+            <div class="brand-text">
+                <strong>AISECT</strong>
+                <span>LIVE BUS TRACKER</span>
+            </div>
+        </a>
+
+        <div class="top-actions">
+
+            <span class="status">
+                <span class="status-dot"></span>
+                SYSTEM ONLINE
+            </span>
+
+            <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+                <i class="fa-solid fa-sun"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="login-container">
+
+        <!-- LEFT EXPERIENCE -->
+
+        <section class="experience">
+
+            <div class="experience-content">
+
+                <span class="eyebrow">
+                    <i class="fa-solid fa-location-dot"></i>
+                    SMART CAMPUS MOBILITY
+                </span>
+
+                <h1>
+                    Your Bus.<br>
+                    <span>Always in Sight.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Track your AISECT University bus in real time,
+                    check live routes and stay connected with your journey.
+                </p>
+
+
+                <div class="live-card">
+
+                    <div class="live-header">
+
+                        <div>
+                            <span class="live-label">
+                                <span class="live-dot"></span>
+                                LIVE TRACKING
+                            </span>
+
+                            <h3>AISECT Bus 01</h3>
+                        </div>
+
+                        <span class="bus-status">
+                            ON ROUTE
+                        </span>
+
+                    </div>
+
+
+                    <div class="route-map">
+
+                        <div class="map-grid"></div>
+
+                        <div class="route-line"></div>
+
+                        <div class="route-point start">
+                            <span></span>
+                        </div>
+
+                        <div class="route-point current">
+                            <i class="fa-solid fa-bus"></i>
+                        </div>
+
+                        <div class="route-point end">
+                            <span></span>
+                        </div>
+
+                        <div class="route-label label-start">
+                            Market
+                        </div>
+
+                        <div class="route-label label-end">
+                            AISECT
+                        </div>
+
+                    </div>
+
+
+                    <div class="bus-info">
+
+                        <div>
+                            <span>ETA</span>
+                            <strong>05 min</strong>
+                        </div>
+
+                        <div>
+                            <span>STATUS</span>
+                            <strong class="running">
+                                <i class="fa-solid fa-circle"></i>
+                                Running
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>ROUTE</span>
+                            <strong>Market → Campus</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="features">
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                        </div>
+
+                        <div>
+                            <strong>Live Location</strong>
+                            <span>Real-time bus tracking</span>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-route"></i>
+                        </div>
+
+                        <div>
+                            <strong>Smart Routes</strong>
+                            <span>Know your journey</span>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+
+                        <div>
+                            <strong>Instant Updates</strong>
+                            <span>Never miss your bus</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOGIN -->
+
+        <section class="login-section">
+
+            <div class="login-card">
+
+                <div class="card-top">
+
+                    <div class="login-icon">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+
+                    <span class="secure-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        SECURE
+                    </span>
+
+                </div>
+
+
+                <div class="login-heading">
+
+                    <span>STUDENT PORTAL</span>
+
+                    <h2>Welcome back.</h2>
+
+                    <p>
+                        Sign in to access your personalized bus tracking experience.
+                    </p>
+
+                </div>
+
+
+                <form id="studentLoginForm">
+
+                    <div class="form-group">
+
+                        <label for="studentId">
+                            Student ID
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-id-card input-icon"></i>
+
+                            <input
+                                type="text"
+                                id="studentId"
+                                placeholder="Enter your student ID"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="label-row">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <a href="#" id="forgotPassword">
+                                Forgot password?
+                            </a>
+
+                        </div>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="passwordToggle"
+                                class="password-toggle"
+                                aria-label="Show password"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <label class="remember">
+
+                        <input type="checkbox" id="rememberMe">
+
+                        <span class="custom-checkbox">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+
+                        <span>Keep me signed in</span>
+
+                    </label>
+
+
+                    <button type="submit" class="login-btn" id="loginBtn">
+
+                        <span>Sign in to Tracker</span>
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+
+                <div class="separator">
+                    <span>OR</span>
+                </div>
+
+
+                <button class="guest-btn" id="guestBtn">
+
+                    <span class="guest-icon">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </span>
+
+                    <span>
+                        <strong>Continue as Guest</strong>
+                        <small>Explore live buses without signing in</small>
+                    </span>
+
+                    <i class="fa-solid fa-chevron-right arrow"></i>
+
+                </button>
+
+
+                <div class="login-footer">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <span>
+                        Your account information is protected
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="copyright">
+                © 2026 AISECT University · Smart Campus Mobility
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div class="toast" id="toast">
+
+        <div class="toast-icon">
+            <i class="fa-solid fa-circle-info"></i>
+        </div>
+
+        <div>
+            <strong>Notice</strong>
+            <span id="toastMessage"></span>
+        </div>
+
+    </div>
+
+
+    <script src="js/student-login.js"></script>
+
+</body>
+
+</html>

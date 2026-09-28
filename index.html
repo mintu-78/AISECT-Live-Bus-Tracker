@@ -2,606 +2,1312 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="AISECT Live Bus Tracker - Track active campus buses in real time."
+    >
+
     <title>AISECT Live Bus Tracker</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <header>
-        <nav class="navbar">
+    <div class="background-grid"></div>
 
-            <div class="logo">
-                🚌 AISECT Live Bus Tracker
+    <div class="ambient-glow glow-one"></div>
+
+    <div class="ambient-glow glow-two"></div>
+
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="#home" class="brand">
+
+                <div class="brand-icon">🏫</div>
+
+                <div class="brand-text">
+
+                    <strong>AISECT</strong>
+
+                    <span>
+                        Live Bus Tracker
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="#home" class="active">
+                    Home
+                </a>
+
+                <a href="#buses">
+                    Live Buses
+                </a>
+
+                <a href="#map-section">
+                    Map
+                </a>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <button
+                    class="theme-btn"
+                    id="themeToggle"
+                    aria-label="Toggle theme"
+                >
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+
+                <a
+                    href="student-login.html"
+                    class="student-login"
+                >
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <span>
+                        Student Login
+                    </span>
+
+                </a>
+
+
+                <button
+                    class="menu-btn"
+                    id="menuBtn"
+                    aria-label="Open menu"
+                >
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
             </div>
 
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#buses">Live Buses</a>
-                <a href="#contact">Contact</a>
-            </div>
+        </div>
 
-            <div class="nav-icons">
-                <i class="fa-solid fa-bell"></i>
-                <i class="fa-solid fa-moon"></i>
+
+        <div
+            class="mobile-menu"
+            id="mobileMenu"
+        >
+
+            <a href="#home">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+
+            <a href="#buses">
+                <i class="fa-solid fa-bus"></i>
+                Live Buses
+            </a>
+
+            <a href="#map-section">
+                <i class="fa-solid fa-map"></i>
+                Map
+            </a>
+
+            <a href="student-login.html">
                 <i class="fa-solid fa-user"></i>
-            </div>
+                Student Login
+            </a>
 
-        </nav>
+        </div>
+
     </header>
 
-    <section class="hero" id="home">
 
-        <div class="hero-content">
-
-            <h1>
-                AISECT Live Bus Tracker
-            </h1>
-
-            <p>
-                Track all 6 college buses live with route,
-                location and arrival time.
-            </p>
-
-            <div class="search-box">
-
-                <input type="text" id="searchInput" placeholder="Search Bus or Location">
-
-                <button id="searchBtn">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    Search Bus
-                </button>
-                <div id="suggestions" class="suggestions"></div>
-
-            </div>
+    <main>
 
 
-            <div class="hero-stats">
+        <!-- HERO -->
 
-                <div class="stat-card">
-                    <h2>🚌 6+</h2>
-                    <p>College Buses</p>
-                </div>
+        <section
+            class="hero"
+            id="home"
+        >
 
+            <div class="hero-content">
 
-                <div class="stat-card">
-                    <h2>📍 Live</h2>
-                    <p>Location Tracking</p>
-                </div>
+                <div class="live-pill">
 
+                    <span class="live-dot"></span>
 
-                <div class="stat-card">
-                    <h2>⏱️ ETA</h2>
-                    <p>Arrival Time</p>
-                </div>
-
-            </div>
-
-        </div>
- </section>
-
-    <!-- ===== About Section Start ===== -->
-
-    <section class="about" id="about">
-
-        <div class="about-container">
-
-            <div class="about-text">
-
-                <h2>About AISECT Live Bus Tracker</h2>
-
-                <p>
-                    AISECT Live Bus Tracker is a real-time transportation system
-                    designed for students and staff of AISECT University.
-                    It provides live bus location, estimated arrival time (ETA),
-                    route information, and bus status using GPS and Firebase.
-                </p>
-
-                <div class="about-features">
-
-                    <div class="feature">
-                        📍 Live GPS Tracking
-                    </div>
-
-                    <div class="feature">
-                        ⏱ Real-time ETA
-                    </div>
-
-                    <div class="feature">
-                        🗺 Smart Route Navigation
-                    </div>
-
-                    <div class="feature">
-                        🔥 Firebase Integration
-                    </div>
+                    CAMPUS TRANSPORT
 
                 </div>
 
-            </div>
 
-            <div class="about-image">
+                <h1>
 
-    <div class="about-bus">
-        🚌
-    </div>
+                    Your Campus.
 
-    <div class="about-circle circle-one"></div>
-    <div class="about-circle circle-two"></div>
-
-</div>
-
-        </div>
-
-       </section>
-
-    <section class="features" id="features">
-
-        <div class="features-header">
-
-            <span>WHY CHOOSE US</span>
-
-            <h2>Smart & Reliable Bus Tracking</h2>
-
-            <p>
-                Everything you need to track college buses
-                quickly, safely and efficiently.
-            </p>
-
-        </div>
-
-        <div class="features-container">
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    <i class="fa-solid fa-location-crosshairs"></i>
-                </div>
-
-                <h3>Live Bus Tracking</h3>
-
-                <p>
-                    Track the current location of college buses
-                    in real time using GPS technology.
-                </p>
-
-            </div>
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    <i class="fa-solid fa-clock"></i>
-                </div>
-
-                <h3>Accurate ETA</h3>
-
-                <p>
-                    Get estimated arrival times so students
-                    can plan their journey without waiting.
-                </p>
-
-            </div>
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    <i class="fa-solid fa-route"></i>
-                </div>
-
-                <h3>Smart Routes</h3>
-
-                <p>
-                    View bus routes and follow the journey
-                    from the current location to AISECT University.
-                </p>
-
-            </div>
-
-            <div class="feature-card">
-
-                <div class="feature-icon">
-                    <i class="fa-solid fa-database"></i>
-                </div>
-
-                <h3>Real-time Data</h3>
-
-                <p>
-                    Firebase keeps bus location and tracking
-                    information synchronized in real time.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="bus-dashboard" id="buses">
-
-        <h2>Live Bus Status</h2>
-
-        <div class="bus-container">
-
-
-            <div class="bus-card" id="bus1">
-
-                <div class="bus-header">
-                    <h3>🚌 Bus 1</h3>
-                    <span class="status running" id="status1">
-                        Running
+                    <span>
+                        Your Journey.
                     </span>
+
+                </h1>
+
+
+                <p>
+
+                    Track active AISECT University buses,
+                    check their live location and know when
+                    your ride is approaching.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#map-section"
+                        class="btn btn-primary"
+                    >
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Track Live Bus
+
+                    </a>
+
+
+                    <a
+                        href="#buses"
+                        class="btn btn-secondary"
+                    >
+
+                        <i class="fa-solid fa-bus"></i>
+
+                        View Buses
+
+                    </a>
+
                 </div>
 
-                <div class="bus-info">
 
-                    <p>
-                        <i class="fa-solid fa-route"></i>
+                <div class="hero-stats">
+
+                    <div class="stat">
+
+                        <strong>
+                            06
+                        </strong>
+
+                        <span>
+                            Campus Buses
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            LIVE
+                        </strong>
+
+                        <span>
+                            When Bus Is Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <strong>
+                            01
+                        </strong>
+
+                        <span>
+                            Smart Platform
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREMIUM ROUTE CARD -->
+
+            <div class="hero-route-card">
+
+                <div class="route-card-top">
+
+                    <div>
+
+                        <span class="small-label">
+                            ACTIVE ROUTE
+                        </span>
+
+                        <h3>
+                            Current Location → AISECT University
+                        </h3>
+
+                    </div>
+
+
+                    <div class="live-status">
+
+                        <span></span>
+
+                        BUS ACTIVE
+
+                    </div>
+
+                </div>
+
+
+                <div class="route-visual">
+
+                    <div class="route-line-bg"></div>
+
+                    <div class="route-line"></div>
+
+
+                    <div class="route-stop stop-start">
+
+                        <div class="stop-dot">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                        </div>
+
+                        <span>
+                            Current Location
+                        </span>
+
+                    </div>
+
+
+                    <div class="route-stop stop-end">
+
+                        <div class="stop-dot destination">
+
+                            <i class="fa-solid fa-graduation-cap"></i>
+
+                        </div>
+
+                        <span>
+                            AISECT University
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="moving-bus"
+                        id="movingBus"
+                    >
+
+                        <div class="bus-glow"></div>
+
+
+                        <div
+                            class="bus-visual"
+                            id="busVisual"
+                        >
+
+                            <div class="bus-body">
+
+                                <div class="bus-top">
+                                    AISECT
+                                </div>
+
+                                <div class="bus-window window-one"></div>
+
+                                <div class="bus-window window-two"></div>
+
+                                <div class="bus-light"></div>
+
+                                <div class="bus-wheel wheel-one"></div>
+
+                                <div class="bus-wheel wheel-two"></div>
+
+                                <div class="bus-person driver">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                                <div class="bus-person passenger">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <span class="bus-name">
+                            AISECT Bus
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="route-bottom">
+
+                    <div class="route-info">
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            ETA
+                        </span>
+
+                        <strong id="heroEta">
+                            05 min
+                        </strong>
+
+                    </div>
+
+
+                    <div class="route-info">
+
+                        <span>
+                            <i class="fa-solid fa-signal"></i>
+                            Status
+                        </span>
+
+                        <strong
+                            class="status-green"
+                            id="heroStatus"
+                        >
+                            Running
+                        </strong>
+
+                    </div>
+
+
+                    <div class="route-info">
+
+                        <span>
+                            <i class="fa-solid fa-road"></i>
+                            Route
+                        </span>
+
+                        <strong>
+                            2 Points
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LIVE BUSES -->
+
+        <section
+            class="section"
+            id="buses"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        LIVE FLEET
+                    </span>
+
+                    <h2>
+                        Buses on the move
+                    </h2>
+
+                </div>
+
+                <p>
+                    Live location appears when the driver starts tracking.
+                </p>
+
+            </div>
+
+
+            <div class="bus-grid">
+
+
+                <!-- BUS 01 -->
+
+                <article
+                    class="bus-card"
+                    data-bus-card="bus1"
+                >
+
+                    <div class="bus-card-header">
+
+                        <div class="bus-number">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                            BUS 01
+
+                        </div>
+
+                        <span
+                            class="badge offline"
+                            id="status-bus1"
+                        >
+                            Offline
+                        </span>
+
+                    </div>
+
+
+                    <div class="bus-route-badge">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Market
+                        <i class="fa-solid fa-arrow-right"></i>
+                        AISECT University
+                    </div>
+
+
+                    <h3>
                         Market → AISECT University
-                    </p>
-
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        Current Location:
-                        <span id="location1">Market</span>
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-clock"></i>
-                        ETA: <span id="eta1">5 min</span>
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-road"></i>
-                        Distance:
-                        <span id="distance1">0 km</span>
-                    </p>
-
-                </div>
-
-                <button id="track1">
-                    Track Bus
-                </button>
-
-            </div>
+                    </h3>
 
 
+                    <div class="bus-meta">
 
-            <div class="bus-card" id="bus2">
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span id="location-bus1">
+                                Waiting for live location
+                            </span>
+                        </span>
 
-                <div class="bus-header">
-                    <h3>🚌 Bus 2</h3>
-                    <span class="status delayed" id="status2">
-                        Delayed
-                    </span>
-                </div>
-
-                <div class="bus-info">
-
-                    <p>
-                        <i class="fa-solid fa-route"></i>
-                        Jhanda Chowk → AISECT University
-                    </p>
-
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        Current Location:
-                        <span id="location2">Jhanda Chowk</span>
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-clock"></i>
-                        ETA: <span id="eta2">8 min</span>
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-road"></i>
-                        Distance:
-                        <span id="distance2">0 km</span>
-                    </p>
-
-                </div>
-
-                <button id="track2">
-                    Track Bus
-                </button>
-
-            </div>
-
-
-
-
-            <div class="bus-card" id="bus3">
-
-                <div class="bus-header">
-                    <h3>🚌 Bus 3</h3>
-                    <span class="status offline" id="status3">
-                        Offline
-                    </span>
-                </div>
-
-                <div class="bus-info">
-
-                    <p>
-                        <i class="fa-solid fa-route"></i>
-                        Ichak → AISECT University
-                    </p>
-
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        Current Location:
-                        <span id="location3">Ichak</span>
-                    </p>
-
-                    <p>
-                        <i class="fa-solid fa-clock"></i>
-                        ETA: <span id="eta3">12 min</span>
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-road"></i>
-                        Distance:
-                        <span id="distance3">0 km</span>
-                    </p>
-
-
-
-
-
-
-                </div>
-
-                <button id="track3">
-                    Track Bus
-                </button>
-
-            </div>
-
-
-                </div>
-
-    </section>
-
-    <section class="contact" id="contact">
-
-        <div class="contact-container">
-
-            <div class="contact-info">
-
-                <span>GET IN TOUCH</span>
-
-                <h2>Have Questions?</h2>
-
-                <p>
-                    Have a question about bus routes, tracking or
-                    the AISECT Live Bus Tracker? Send us a message.
-                </p>
-
-                <div class="contact-item">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <div>
-                        <strong>Location</strong>
-                        <p>AISECT University, Jharkhand</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <div>
-                        <strong>Email</strong>
-                        <p>support@aisectbus.com</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <div>
-                        <strong>Support</strong>
-                        <p>Available for students and staff</p>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="contact-form">
-
-                <h2>Send Us a Message</h2>
-
-                <form id="contactForm">
-
-                    <div class="input-group">
-
-                        <label for="name">Your Name</label>
-
-                        <input
-                            type="text"
-                            id="name"
-                            placeholder="Enter your name"
-                            required
-                        >
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            <span id="time-bus1">
+                                --
+                            </span>
+                        </span>
 
                     </div>
 
-                    <div class="input-group">
 
-                        <label for="email">Email Address</label>
+                    <button
+                        class="track-btn"
+                        data-bus="bus1"
+                    >
 
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Enter your email"
-                            required
-                        >
+                        Track Bus
 
-                    </div>
+                        <i class="fa-solid fa-arrow-right"></i>
 
-                    <div class="input-group">
-
-                        <label for="message">Message</label>
-
-                        <textarea
-                            id="message"
-                            rows="5"
-                            placeholder="Write your message..."
-                            required
-                        ></textarea>
-
-                    </div>
-
-                    <button type="submit">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        Send Message
                     </button>
 
-                </form>
+                </article>
+
+
+                <!-- BUS 02 -->
+
+                <article
+                    class="bus-card"
+                    data-bus-card="bus2"
+                >
+
+                    <div class="bus-card-header">
+
+                        <div class="bus-number">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                            BUS 02
+
+                        </div>
+
+                        <span
+                            class="badge offline"
+                            id="status-bus2"
+                        >
+                            Offline
+                        </span>
+
+                    </div>
+
+
+                    <div class="bus-route-badge">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Jhanda Chowk
+                        <i class="fa-solid fa-arrow-right"></i>
+                        AISECT University
+                    </div>
+
+
+                    <h3>
+                        Jhanda Chowk → AISECT University
+                    </h3>
+
+
+                    <div class="bus-meta">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span id="location-bus2">
+                                Waiting for live location
+                            </span>
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            <span id="time-bus2">
+                                --
+                            </span>
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="track-btn"
+                        data-bus="bus2"
+                    >
+
+                        Track Bus
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </article>
+
+
+                <!-- BUS 03 -->
+
+                <article
+                    class="bus-card"
+                    data-bus-card="bus3"
+                >
+
+                    <div class="bus-card-header">
+
+                        <div class="bus-number">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                            BUS 03
+
+                        </div>
+
+                        <span
+                            class="badge offline"
+                            id="status-bus3"
+                        >
+                            Offline
+                        </span>
+
+                    </div>
+
+
+                    <div class="bus-route-badge">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Ichak
+                        <i class="fa-solid fa-arrow-right"></i>
+                        AISECT University
+                    </div>
+
+
+                    <h3>
+                        Ichak → AISECT University
+                    </h3>
+
+
+                    <div class="bus-meta">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span id="location-bus3">
+                                Waiting for live location
+                            </span>
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            <span id="time-bus3">
+                                --
+                            </span>
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="track-btn"
+                        data-bus="bus3"
+                    >
+
+                        Track Bus
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </article>
+
+
+                <!-- BUS 04 -->
+
+                <article
+                    class="bus-card"
+                    data-bus-card="bus4"
+                >
+
+                    <div class="bus-card-header">
+
+                        <div class="bus-number">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                            BUS 04
+
+                        </div>
+
+                        <span
+                            class="badge offline"
+                            id="status-bus4"
+                        >
+                            Offline
+                        </span>
+
+                    </div>
+
+
+                    <div class="bus-route-badge">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Matwari
+                        <i class="fa-solid fa-arrow-right"></i>
+                        AISECT University
+                    </div>
+
+
+                    <h3>
+                        Matwari → AISECT University
+                    </h3>
+
+
+                    <div class="bus-meta">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span id="location-bus4">
+                                Waiting for live location
+                            </span>
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            <span id="time-bus4">
+                                --
+                            </span>
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="track-btn"
+                        data-bus="bus4"
+                    >
+
+                        Track Bus
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </article>
+
+
+                <!-- BUS 05 -->
+
+                <article
+                    class="bus-card"
+                    data-bus-card="bus5"
+                >
+
+                    <div class="bus-card-header">
+
+                        <div class="bus-number">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                            BUS 05
+
+                        </div>
+
+                        <span
+                            class="badge offline"
+                            id="status-bus5"
+                        >
+                            Offline
+                        </span>
+
+                    </div>
+
+
+                    <div class="bus-route-badge">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Matwari
+                        <i class="fa-solid fa-arrow-right"></i>
+                        AISECT University
+                    </div>
+
+
+                    <h3>
+                        Matwari → AISECT University
+                    </h3>
+
+
+                    <div class="bus-meta">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span id="location-bus5">
+                                Waiting for live location
+                            </span>
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            <span id="time-bus5">
+                                --
+                            </span>
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="track-btn"
+                        data-bus="bus5"
+                    >
+
+                        Track Bus
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </article>
+
+
+                <!-- BUS 06 -->
+
+                <article
+                    class="bus-card"
+                    data-bus-card="bus6"
+                >
+
+                    <div class="bus-card-header">
+
+                        <div class="bus-number">
+
+                            <i class="fa-solid fa-bus"></i>
+
+                            BUS 06
+
+                        </div>
+
+                        <span
+                            class="badge offline"
+                            id="status-bus6"
+                        >
+                            Offline
+                        </span>
+
+                    </div>
+
+
+                    <div class="bus-route-badge">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Matwari
+                        <i class="fa-solid fa-arrow-right"></i>
+                        AISECT University
+                    </div>
+
+
+                    <h3>
+                        Matwari → AISECT University
+                    </h3>
+
+
+                    <div class="bus-meta">
+
+                        <span>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span id="location-bus6">
+                                Waiting for live location
+                            </span>
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-clock"></i>
+                            <span id="time-bus6">
+                                --
+                            </span>
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="track-btn"
+                        data-bus="bus6"
+                    >
+
+                        Track Bus
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </article>
 
             </div>
 
-        </div>
+        </section>
 
-    </section>
 
-    <section class="map-section">
-        <h2>🗺️ Live Bus Map</h2>
-        <div class="map-actions">
-            <button id="showAllBtn">
-                🚌 Show All Buses
-            </button>
-        </div>
+        <!-- MAP -->
 
-        <div class="tracking-layout">
+        <section
+            class="section map-section"
+            id="map-section"
+        >
 
-            <div class="map-container">
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        LIVE MAP
+                    </span>
+
+                    <h2>
+                        Track your bus
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="location-btn"
+                    id="locateBtn"
+                >
+
+                    <i class="fa-solid fa-location-crosshairs"></i>
+
+                    My Location
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="selected-bus-panel"
+                id="selectedBusPanel"
+            >
+
+                <div class="selected-bus-icon">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        SELECTED BUS
+                    </span>
+
+                    <strong id="selectedBusName">
+                        No bus selected
+                    </strong>
+
+                </div>
+
+                <div class="selected-bus-status">
+
+                    <span
+                        id="selectedBusDot"
+                        class="selected-status-dot"
+                    ></span>
+
+                    <span id="selectedBusStatus">
+                        Select a bus to track
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="map-wrapper">
+
                 <div id="map"></div>
+
             </div>
 
-            <div class="tracking-panel" id="trackingPanel">
+        </section>
 
-                <h2>🚌 Live Bus Details</h2>
 
-                <div class="detail-item">
-                    <span>Bus</span>
-                    <strong id="panelBus">--</strong>
-                </div>
+        <!-- FEATURES -->
 
-                <div class="detail-item">
-                    <span>Current Location</span>
-                    <strong id="panelLocation">--</strong>
-                </div>
+        <section class="section">
 
-                <div class="detail-item">
-                    <span>Route</span>
-                    <strong id="panelRoute">--</strong>
-                </div>
+            <div class="section-heading">
 
-                <div class="detail-item">
-                    <span>ETA</span>
-                    <strong id="panelEta">--</strong>
-                </div>
+                <div>
 
-                <div class="detail-item">
-                    <span>Status</span>
-                    <strong id="panelStatus">--</strong>
-                </div>
+                    <span class="section-label">
+                        WHY AISECT TRACKER
+                    </span>
 
-                <div class="detail-item">
-                    <span>Last Updated</span>
-                    <strong id="panelUpdated">Just Now</strong>
+                    <h2>
+                        Built for your journey
+                    </h2>
+
                 </div>
 
             </div>
 
-        </div>
 
-    </section>
+            <div class="feature-grid">
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-satellite-dish"></i>
+                    </div>
+
+                    <h3>
+                        Live Tracking
+                    </h3>
+
+                    <p>
+                        Track a bus when its live location
+                        is active.
+                    </p>
+
+                </article>
 
 
-    <div class="bus-modal" id="busModal">
-        
+                <article class="feature">
 
-        <div class="modal-content">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
 
-            <span id="closeModal">&times;</span>
+                    <h3>
+                        Smart ETA
+                    </h3>
 
-            <h2 id="modalTitle">
-                🚌 Bus Details
-            </h2>
+                    <p>
+                        Get an estimated arrival time
+                        for your active bus.
+                    </p>
 
-            <div class="modal-info">
+                </article>
 
-                <p id="modalRoute"></p>
 
-                <p id="modalLocation"></p>
+                <article class="feature">
 
-                <p id="modalEta"></p>
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
 
-                <p id="modalStatus"></p>
+                    <h3>
+                        Clear Routes
+                    </h3>
+
+                    <p>
+                        See the route between current
+                        location and AISECT University.
+                    </p>
+
+                </article>
+
+
+                <article class="feature">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <h3>
+                        Reliable Platform
+                    </h3>
+
+                    <p>
+                        One simple platform for students
+                        and campus transport.
+                    </p>
+
+                </article>
 
             </div>
 
-        </div>
+        </section>
 
-    </div>
+    </main>
+
+
+    <!-- FOOTER -->
 
     <footer class="footer">
 
-    <div class="footer-container">
+        <div class="footer-glow"></div>
 
-        <div class="footer-brand">
-            <h2>🚌 AISECT Live Bus Tracker</h2>
-            <p>
-                Smart and reliable college bus tracking
-                for students and staff.
-            </p>
-        </div>
 
-        <div class="footer-links">
-            <h3>Quick Links</h3>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#buses">Live Buses</a>
-            <a href="#contact">Contact</a>
-        </div>
+        <div class="footer-container">
 
-        <div class="footer-links">
-            <h3>Features</h3>
-            <a href="#features">Live Tracking</a>
-            <a href="#features">Real-time ETA</a>
-            <a href="#features">Smart Routes</a>
-            <a href="#features">Firebase</a>
-        </div>
+            <div class="footer-main">
 
-        <div class="footer-social">
-            <h3>Follow Us</h3>
 
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <div class="footer-brand">
+
+                    <a
+                        href="#home"
+                        class="brand footer-logo"
+                    >
+
+                        <div class="brand-icon">
+                            🏫
+                        </div>
+
+                        <div class="brand-text">
+
+                            <strong>
+                                AISECT
+                            </strong>
+
+                            <span>
+                                Live Bus Tracker
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <p>
+                        Smart campus transportation
+                        designed to make your daily
+                        journey simple and connected.
+                    </p>
+
+
+                    <div class="footer-social">
+
+                        <a href="#" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+
+                        <a href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Navigation
+                    </h4>
+
+                    <a href="#home">
+                        Home
+                    </a>
+
+                    <a href="#buses">
+                        Live Buses
+                    </a>
+
+                    <a href="#map-section">
+                        Live Map
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Platform
+                    </h4>
+
+                    <a href="student-login.html">
+                        Student Login
+                    </a>
+
+                    <a href="#">
+                        Driver Login
+                    </a>
+
+                    <a href="#buses">
+                        Bus Status
+                    </a>
+
+                    <a href="#map-section">
+                        Help Center
+                    </a>
+
+                </div>
+
+
+                <div class="footer-status">
+
+                    <h4>
+                        System Status
+                    </h4>
+
+
+                    <div class="system-status">
+
+                        <span class="system-dot"></span>
+
+                        <div>
+
+                            <strong>
+                                Live tracking available
+                            </strong>
+
+                            <span>
+                                Driver location appears automatically
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="footer-mini-card">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <div>
+
+                            <strong>
+                                AISECT University
+                            </strong>
+
+                            <span>
+                                Jharkhand, India
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 AISECT Live Bus Tracker.
+                    All rights reserved.
+                </span>
+
+
+                <span class="footer-made">
+
+                    Built for students
+
+                    <i class="fa-solid fa-heart"></i>
+
+                    by AISECT
+
+                </span>
+
+            </div>
+
         </div>
 
-    </div>
+    </footer>
 
-    <div class="footer-bottom">
-        <p>© 2026 AISECT Live Bus Tracker. All Rights Reserved.</p>
-    </div>
 
-</footer>
+    <!-- LEAFLET -->
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    ></script>
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <!-- FIREBASE -->
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
     <script src="js/firebase.js"></script>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 
     <script src="js/app.js"></script>
 
