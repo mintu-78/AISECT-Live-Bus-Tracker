@@ -17,6 +17,9 @@
 
     <title>AISECT Live Bus Tracker</title>
 
+
+    <!-- GOOGLE FONTS -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link
@@ -30,15 +33,32 @@
         rel="stylesheet"
     >
 
+
+    <!-- FONT AWESOME -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
+
+    <!-- LEAFLET -->
+
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     >
+
+
+    <!-- LEAFLET ROUTING MACHINE -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"
+    >
+
+
+    <!-- MAIN CSS -->
 
     <link
         rel="stylesheet"
@@ -57,19 +77,31 @@
     <div class="ambient-glow glow-two"></div>
 
 
-    <!-- NAVBAR -->
+    <!-- =========================
+         NAVBAR
+    ========================== -->
 
     <header class="navbar">
 
         <div class="nav-container">
 
-            <a href="#home" class="brand">
 
-                <div class="brand-icon">🏫</div>
+            <!-- BRAND -->
+
+            <a
+                href="#home"
+                class="brand"
+            >
+
+                <div class="brand-icon">
+                    🏫
+                </div>
 
                 <div class="brand-text">
 
-                    <strong>AISECT</strong>
+                    <strong>
+                        AISECT
+                    </strong>
 
                     <span>
                         Live Bus Tracker
@@ -79,7 +111,8 @@
 
             </a>
 
-                        <!-- BUS SEARCH BAR -->
+
+            <!-- BUS SEARCH BAR -->
 
             <div class="navbar-search">
 
@@ -102,6 +135,7 @@
 
                 </button>
 
+
                 <div
                     class="search-results"
                     id="searchResults"
@@ -109,9 +143,15 @@
 
             </div>
 
+
+            <!-- NAV LINKS -->
+
             <nav class="nav-links">
 
-                <a href="#home" class="active">
+                <a
+                    href="#home"
+                    class="active"
+                >
                     Home
                 </a>
 
@@ -126,16 +166,25 @@
             </nav>
 
 
+            <!-- NAV ACTIONS -->
+
             <div class="nav-actions">
+
+
+                <!-- THEME -->
 
                 <button
                     class="theme-btn"
                     id="themeToggle"
                     aria-label="Toggle theme"
                 >
+
                     <i class="fa-solid fa-moon"></i>
+
                 </button>
 
+
+                <!-- STUDENT LOGIN -->
 
                 <a
                     href="student-login.html"
@@ -150,6 +199,8 @@
 
                 </a>
 
+
+                <!-- MOBILE MENU -->
 
                 <button
                     class="menu-btn"
@@ -166,29 +217,46 @@
         </div>
 
 
+        <!-- MOBILE MENU -->
+
         <div
             class="mobile-menu"
             id="mobileMenu"
         >
 
             <a href="#home">
+
                 <i class="fa-solid fa-house"></i>
+
                 Home
+
             </a>
+
 
             <a href="#buses">
+
                 <i class="fa-solid fa-bus"></i>
+
                 Live Buses
+
             </a>
+
 
             <a href="#map-section">
+
                 <i class="fa-solid fa-map"></i>
+
                 Map
+
             </a>
 
+
             <a href="student-login.html">
+
                 <i class="fa-solid fa-user"></i>
+
                 Student Login
+
             </a>
 
         </div>
@@ -196,10 +264,16 @@
     </header>
 
 
+    <!-- =========================
+         MAIN
+    ========================== -->
+
     <main>
 
 
-        <!-- HERO -->
+        <!-- =========================
+             HERO
+        ========================== -->
 
         <section
             class="hero"
@@ -207,6 +281,7 @@
         >
 
             <div class="hero-content">
+
 
                 <div class="live-pill">
 
@@ -239,6 +314,7 @@
 
                 <div class="hero-buttons">
 
+
                     <a
                         href="#map-section"
                         class="btn btn-primary"
@@ -266,6 +342,7 @@
 
 
                 <div class="hero-stats">
+
 
                     <div class="stat">
 
@@ -310,9 +387,12 @@
             </div>
 
 
-            <!-- PREMIUM ROUTE CARD -->
+            <!-- =========================
+                 PREMIUM ROUTE CARD
+            ========================== -->
 
             <div class="hero-route-card">
+
 
                 <div class="route-card-top">
 
@@ -347,6 +427,8 @@
                     <div class="route-line"></div>
 
 
+                    <!-- START -->
+
                     <div class="route-stop stop-start">
 
                         <div class="stop-dot">
@@ -362,6 +444,8 @@
                     </div>
 
 
+                    <!-- DESTINATION -->
+
                     <div class="route-stop stop-end">
 
                         <div class="stop-dot destination">
@@ -376,6 +460,8 @@
 
                     </div>
 
+
+                    <!-- MOVING BUS -->
 
                     <div
                         class="moving-bus"
@@ -406,12 +492,18 @@
 
                                 <div class="bus-wheel wheel-two"></div>
 
+
                                 <div class="bus-person driver">
+
                                     <i class="fa-solid fa-user"></i>
+
                                 </div>
 
+
                                 <div class="bus-person passenger">
+
                                     <i class="fa-solid fa-user"></i>
+
                                 </div>
 
                             </div>
@@ -428,13 +520,19 @@
                 </div>
 
 
+                <!-- ROUTE BOTTOM -->
+
                 <div class="route-bottom">
+
 
                     <div class="route-info">
 
                         <span>
+
                             <i class="fa-solid fa-clock"></i>
+
                             ETA
+
                         </span>
 
                         <strong id="heroEta">
@@ -447,8 +545,11 @@
                     <div class="route-info">
 
                         <span>
+
                             <i class="fa-solid fa-signal"></i>
+
                             Status
+
                         </span>
 
                         <strong
@@ -464,8 +565,11 @@
                     <div class="route-info">
 
                         <span>
+
                             <i class="fa-solid fa-road"></i>
+
                             Route
+
                         </span>
 
                         <strong>
@@ -481,12 +585,15 @@
         </section>
 
 
-        <!-- LIVE BUSES -->
+        <!-- =========================
+             LIVE BUSES
+        ========================== -->
 
         <section
             class="section"
             id="buses"
         >
+
 
             <div class="section-heading">
 
@@ -512,7 +619,9 @@
             <div class="bus-grid">
 
 
-                <!-- BUS 01 -->
+                <!-- =========================
+                     BUS 01
+                ========================== -->
 
                 <article
                     class="bus-card"
@@ -529,6 +638,7 @@
 
                         </div>
 
+
                         <span
                             class="badge offline"
                             id="status-bus1"
@@ -540,10 +650,15 @@
 
 
                     <div class="bus-route-badge">
+
                         <i class="fa-solid fa-location-dot"></i>
+
                         Market
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                         AISECT University
+
                     </div>
 
 
@@ -555,17 +670,24 @@
                     <div class="bus-meta">
 
                         <span>
+
                             <i class="fa-solid fa-location-dot"></i>
+
                             <span id="location-bus1">
                                 Waiting for live location
                             </span>
+
                         </span>
 
+
                         <span>
+
                             <i class="fa-solid fa-clock"></i>
+
                             <span id="time-bus1">
                                 --
                             </span>
+
                         </span>
 
                     </div>
@@ -585,7 +707,9 @@
                 </article>
 
 
-                <!-- BUS 02 -->
+                <!-- =========================
+                     BUS 02
+                ========================== -->
 
                 <article
                     class="bus-card"
@@ -602,6 +726,7 @@
 
                         </div>
 
+
                         <span
                             class="badge offline"
                             id="status-bus2"
@@ -613,10 +738,15 @@
 
 
                     <div class="bus-route-badge">
+
                         <i class="fa-solid fa-location-dot"></i>
+
                         Jhanda Chowk
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                         AISECT University
+
                     </div>
 
 
@@ -628,17 +758,24 @@
                     <div class="bus-meta">
 
                         <span>
+
                             <i class="fa-solid fa-location-dot"></i>
+
                             <span id="location-bus2">
                                 Waiting for live location
                             </span>
+
                         </span>
 
+
                         <span>
+
                             <i class="fa-solid fa-clock"></i>
+
                             <span id="time-bus2">
                                 --
                             </span>
+
                         </span>
 
                     </div>
@@ -658,7 +795,9 @@
                 </article>
 
 
-                <!-- BUS 03 -->
+                <!-- =========================
+                     BUS 03
+                ========================== -->
 
                 <article
                     class="bus-card"
@@ -675,6 +814,7 @@
 
                         </div>
 
+
                         <span
                             class="badge offline"
                             id="status-bus3"
@@ -686,10 +826,15 @@
 
 
                     <div class="bus-route-badge">
+
                         <i class="fa-solid fa-location-dot"></i>
+
                         Ichak
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                         AISECT University
+
                     </div>
 
 
@@ -701,17 +846,24 @@
                     <div class="bus-meta">
 
                         <span>
+
                             <i class="fa-solid fa-location-dot"></i>
+
                             <span id="location-bus3">
                                 Waiting for live location
                             </span>
+
                         </span>
 
+
                         <span>
+
                             <i class="fa-solid fa-clock"></i>
+
                             <span id="time-bus3">
                                 --
                             </span>
+
                         </span>
 
                     </div>
@@ -731,7 +883,9 @@
                 </article>
 
 
-                <!-- BUS 04 -->
+                <!-- =========================
+                     BUS 04
+                ========================== -->
 
                 <article
                     class="bus-card"
@@ -748,6 +902,7 @@
 
                         </div>
 
+
                         <span
                             class="badge offline"
                             id="status-bus4"
@@ -759,10 +914,15 @@
 
 
                     <div class="bus-route-badge">
+
                         <i class="fa-solid fa-location-dot"></i>
+
                         Matwari
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                         AISECT University
+
                     </div>
 
 
@@ -774,17 +934,24 @@
                     <div class="bus-meta">
 
                         <span>
+
                             <i class="fa-solid fa-location-dot"></i>
+
                             <span id="location-bus4">
                                 Waiting for live location
                             </span>
+
                         </span>
 
+
                         <span>
+
                             <i class="fa-solid fa-clock"></i>
+
                             <span id="time-bus4">
                                 --
                             </span>
+
                         </span>
 
                     </div>
@@ -804,7 +971,9 @@
                 </article>
 
 
-                <!-- BUS 05 -->
+                <!-- =========================
+                     BUS 05
+                ========================== -->
 
                 <article
                     class="bus-card"
@@ -821,6 +990,7 @@
 
                         </div>
 
+
                         <span
                             class="badge offline"
                             id="status-bus5"
@@ -832,10 +1002,15 @@
 
 
                     <div class="bus-route-badge">
+
                         <i class="fa-solid fa-location-dot"></i>
+
                         Matwari
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                         AISECT University
+
                     </div>
 
 
@@ -847,17 +1022,24 @@
                     <div class="bus-meta">
 
                         <span>
+
                             <i class="fa-solid fa-location-dot"></i>
+
                             <span id="location-bus5">
                                 Waiting for live location
                             </span>
+
                         </span>
 
+
                         <span>
+
                             <i class="fa-solid fa-clock"></i>
+
                             <span id="time-bus5">
                                 --
                             </span>
+
                         </span>
 
                     </div>
@@ -877,7 +1059,9 @@
                 </article>
 
 
-                <!-- BUS 06 -->
+                <!-- =========================
+                     BUS 06
+                ========================== -->
 
                 <article
                     class="bus-card"
@@ -894,6 +1078,7 @@
 
                         </div>
 
+
                         <span
                             class="badge offline"
                             id="status-bus6"
@@ -905,10 +1090,15 @@
 
 
                     <div class="bus-route-badge">
+
                         <i class="fa-solid fa-location-dot"></i>
+
                         Matwari
+
                         <i class="fa-solid fa-arrow-right"></i>
+
                         AISECT University
+
                     </div>
 
 
@@ -920,17 +1110,24 @@
                     <div class="bus-meta">
 
                         <span>
+
                             <i class="fa-solid fa-location-dot"></i>
+
                             <span id="location-bus6">
                                 Waiting for live location
                             </span>
+
                         </span>
 
+
                         <span>
+
                             <i class="fa-solid fa-clock"></i>
+
                             <span id="time-bus6">
                                 --
                             </span>
+
                         </span>
 
                     </div>
@@ -954,12 +1151,15 @@
         </section>
 
 
-        <!-- MAP -->
+        <!-- =========================
+             MAP
+        ========================== -->
 
         <section
             class="section map-section"
             id="map-section"
         >
+
 
             <div class="section-heading">
 
@@ -976,24 +1176,34 @@
                 </div>
 
 
+                <!-- BUS LOCATION SELECTOR BUTTON -->
+
                 <button
                     class="location-btn"
                     id="locateBtn"
+                    type="button"
                 >
 
                     <i class="fa-solid fa-location-crosshairs"></i>
 
-                    My Location
+                    Select Bus Location
 
                 </button>
 
             </div>
 
 
+            <!-- =========================
+                 SELECTED BUS DETAILS
+            ========================== -->
+
             <div
                 class="selected-bus-panel"
                 id="selectedBusPanel"
             >
+
+
+                <!-- BUS ICON -->
 
                 <div class="selected-bus-icon">
 
@@ -1001,7 +1211,10 @@
 
                 </div>
 
-                <div>
+
+                <!-- BUS NAME -->
+
+                <div class="selected-bus-main">
 
                     <span>
                         SELECTED BUS
@@ -1011,7 +1224,116 @@
                         No bus selected
                     </strong>
 
+                    <small id="selectedBusRoute">
+                        Select a bus to start tracking
+                    </small>
+
                 </div>
+
+
+                <!-- BUS DETAILS -->
+
+                <div class="selected-bus-details">
+
+
+                    <!-- STATUS -->
+
+                    <div class="selected-detail">
+
+                        <span>
+
+                            <i class="fa-solid fa-signal"></i>
+
+                            Status
+
+                        </span>
+
+                        <strong id="selectedBusStatus">
+                            Offline
+                        </strong>
+
+                    </div>
+
+
+                    <!-- ETA -->
+
+                    <div class="selected-detail">
+
+                        <span>
+
+                            <i class="fa-solid fa-clock"></i>
+
+                            ETA
+
+                        </span>
+
+                        <strong id="selectedBusEta">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <!-- DISTANCE -->
+
+                    <div class="selected-detail">
+
+                        <span>
+
+                            <i class="fa-solid fa-route"></i>
+
+                            Distance
+
+                        </span>
+
+                        <strong id="selectedBusDistance">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="selected-detail">
+
+                        <span>
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            Location
+
+                        </span>
+
+                        <strong id="selectedBusLocation">
+                            Waiting...
+                        </strong>
+
+                    </div>
+
+
+                    <!-- UPDATED -->
+
+                    <div class="selected-detail">
+
+                        <span>
+
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+
+                            Updated
+
+                        </span>
+
+                        <strong id="selectedBusUpdated">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIVE DOT -->
 
                 <div class="selected-bus-status">
 
@@ -1020,14 +1342,12 @@
                         class="selected-status-dot"
                     ></span>
 
-                    <span id="selectedBusStatus">
-                        Select a bus to track
-                    </span>
-
                 </div>
 
             </div>
 
+
+            <!-- MAP -->
 
             <div class="map-wrapper">
 
@@ -1038,9 +1358,12 @@
         </section>
 
 
-        <!-- FEATURES -->
+        <!-- =========================
+             FEATURES
+        ========================== -->
 
         <section class="section">
+
 
             <div class="section-heading">
 
@@ -1061,10 +1384,15 @@
 
             <div class="feature-grid">
 
+
+                <!-- FEATURE 01 -->
+
                 <article class="feature">
 
                     <div class="feature-icon">
+
                         <i class="fa-solid fa-satellite-dish"></i>
+
                     </div>
 
                     <h3>
@@ -1079,10 +1407,14 @@
                 </article>
 
 
+                <!-- FEATURE 02 -->
+
                 <article class="feature">
 
                     <div class="feature-icon">
+
                         <i class="fa-solid fa-bolt"></i>
+
                     </div>
 
                     <h3>
@@ -1097,10 +1429,14 @@
                 </article>
 
 
+                <!-- FEATURE 03 -->
+
                 <article class="feature">
 
                     <div class="feature-icon">
+
                         <i class="fa-solid fa-route"></i>
+
                     </div>
 
                     <h3>
@@ -1115,10 +1451,14 @@
                 </article>
 
 
+                <!-- FEATURE 04 -->
+
                 <article class="feature">
 
                     <div class="feature-icon">
+
                         <i class="fa-solid fa-shield-halved"></i>
+
                     </div>
 
                     <h3>
@@ -1139,7 +1479,9 @@
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
     <footer class="footer">
 
@@ -1148,10 +1490,14 @@
 
         <div class="footer-container">
 
+
             <div class="footer-main">
 
 
+                <!-- FOOTER BRAND -->
+
                 <div class="footer-brand">
+
 
                     <a
                         href="#home"
@@ -1186,22 +1532,41 @@
 
                     <div class="footer-social">
 
-                        <a href="#" aria-label="GitHub">
+                        <a
+                            href="#"
+                            aria-label="GitHub"
+                        >
+
                             <i class="fa-brands fa-github"></i>
+
                         </a>
 
-                        <a href="#" aria-label="Instagram">
+
+                        <a
+                            href="#"
+                            aria-label="Instagram"
+                        >
+
                             <i class="fa-brands fa-instagram"></i>
+
                         </a>
 
-                        <a href="#" aria-label="LinkedIn">
+
+                        <a
+                            href="#"
+                            aria-label="LinkedIn"
+                        >
+
                             <i class="fa-brands fa-linkedin-in"></i>
+
                         </a>
 
                     </div>
 
                 </div>
 
+
+                <!-- NAVIGATION -->
 
                 <div class="footer-column">
 
@@ -1223,6 +1588,8 @@
 
                 </div>
 
+
+                <!-- PLATFORM -->
 
                 <div class="footer-column">
 
@@ -1248,6 +1615,8 @@
 
                 </div>
 
+
+                <!-- SYSTEM STATUS -->
 
                 <div class="footer-status">
 
@@ -1298,6 +1667,8 @@
             </div>
 
 
+            <!-- FOOTER BOTTOM -->
+
             <div class="footer-bottom">
 
                 <span>
@@ -1323,22 +1694,47 @@
     </footer>
 
 
-    <!-- LEAFLET -->
+    <!-- =========================
+         LEAFLET
+    ========================== -->
 
     <script
         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     ></script>
 
 
-    <!-- FIREBASE -->
+    <!-- =========================
+         LEAFLET ROUTING MACHINE
+    ========================== -->
 
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script
+        src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"
+    ></script>
 
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+    <!-- =========================
+         FIREBASE
+    ========================== -->
+
+    <script
+        src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"
+    ></script>
+
+
+    <script
+        src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"
+    ></script>
+
+
+    <!-- FIREBASE CONFIG -->
 
     <script src="js/firebase.js"></script>
 
+
+    <!-- MAIN APP -->
+
     <script src="js/app.js"></script>
+
 
 </body>
 
