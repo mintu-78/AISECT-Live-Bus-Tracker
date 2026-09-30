@@ -1065,4 +1065,383 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+    /* =========================
+   BUS SEARCH
+========================= */
+
+const busSearch = document.getElementById("busSearch");
+
+const clearSearch = document.getElementById("clearSearch");
+
+const searchResults = document.getElementById("searchResults");
+
+
+const searchBusData = [
+
+    {
+        id: "bus1",
+        name: "AISECT Bus 01",
+        route: "Market → AISECT University",
+        keywords: [
+            "bus 1",
+            "bus 01",
+            "bus1",
+            "bus01",
+            "market"
+        ]
+    },
+
+    {
+        id: "bus2",
+        name: "AISECT Bus 02",
+        route: "Jhanda Chowk → AISECT University",
+        keywords: [
+            "bus 2",
+            "bus 02",
+            "bus2",
+            "bus02",
+            "jhanda chowk",
+            "jhanda"
+        ]
+    },
+
+    {
+        id: "bus3",
+        name: "AISECT Bus 03",
+        route: "Ichak → AISECT University",
+        keywords: [
+            "bus 3",
+            "bus 03",
+            "bus3",
+            "bus03",
+            "ichak"
+        ]
+    },
+
+    {
+        id: "bus4",
+        name: "AISECT Bus 04",
+        route: "Matwari → AISECT University",
+        keywords: [
+            "bus 4",
+            "bus 04",
+            "bus4",
+            "bus04",
+            "matwari"
+        ]
+    },
+
+    {
+        id: "bus5",
+        name: "AISECT Bus 05",
+        route: "Matwari → AISECT University",
+        keywords: [
+            "bus 5",
+            "bus 05",
+            "bus5",
+            "bus05",
+            "matwari"
+        ]
+    },
+
+    {
+        id: "bus6",
+        name: "AISECT Bus 06",
+        route: "Matwari → AISECT University",
+        keywords: [
+            "bus 6",
+            "bus 06",
+            "bus6",
+            "bus06",
+            "matwari"
+        ]
+    }
+
+];
+
+
+function searchBuses(value) {
+
+    const query = value.trim().toLowerCase();
+
+
+    if (!query) {
+
+        searchResults.innerHTML = "";
+
+        searchResults.classList.remove("show");
+
+        clearSearch.style.display = "none";
+
+
+        document
+            .querySelectorAll(".bus-card")
+            .forEach(card => {
+
+                card.style.display = "";
+
+            });
+
+
+        return;
+    }
+
+
+    clearSearch.style.display = "flex";
+
+
+    let matches = [];
+
+
+    if (query === "matwari") {
+
+        matches = searchBusData.filter(bus =>
+
+            bus.id === "bus4" ||
+            bus.id === "bus5" ||
+            bus.id === "bus6"
+
+        );
+
+    } else {
+
+        matches = searchBusData.filter(bus => {
+
+            const searchableText = [
+
+                bus.name,
+
+                bus.route,
+
+                ...bus.keywords
+
+            ]
+                .join(" ")
+                .toLowerCase();
+
+
+            return searchableText.includes(query);
+
+        });
+
+    }
+
+
+    document
+        .querySelectorAll(".bus-card")
+        .forEach(card => {
+
+            const busId = card.dataset.busCard;
+
+            const visible = matches.some(
+                bus => bus.id === busId
+            );
+
+            card.style.display = visible ? "" : "none";
+
+        });
+
+
+    if (!matches.length) {
+
+        searchResults.innerHTML = `
+
+            <div class="search-result-item">
+
+                <div class="search-result-icon">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </div>
+
+
+                <div class="search-result-text">
+
+                    <strong>
+                        No bus found
+                    </strong>
+
+                    <span>
+                        Try Bus 1, Market, Ichak or Matwari
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        searchResults.classList.add("show");
+
+        return;
+    }
+
+
+    searchResults.innerHTML = matches
+        .map(bus => `
+
+            <div
+                class="search-result-item"
+                data-search-bus="${bus.id}"
+            >
+
+                <div class="search-result-icon">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+
+                <div class="search-result-text">
+
+                    <strong>
+                        ${bus.name}
+                    </strong>
+
+                    <span>
+                        ${bus.route}
+                    </span>
+
+                </div>
+
+            </div>
+
+        `)
+        .join("");
+
+
+    searchResults.classList.add("show");
+
+
+    searchResults
+        .querySelectorAll(
+            ".search-result-item[data-search-bus]"
+        )
+        .forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                const busId =
+                    item.dataset.searchBus;
+
+
+                const card =
+                    document.querySelector(
+                        `[data-bus-card="${busId}"]`
+                    );
+
+
+                if (card) {
+
+                    card.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }
+
+
+                if (typeof selectBus === "function") {
+
+                    selectBus(busId);
+
+                }
+
+
+                searchResults.classList.remove("show");
+
+            });
+
+        });
+
+}
+
+
+if (busSearch) {
+
+    busSearch.addEventListener(
+        "input",
+        () => {
+
+            searchBuses(
+                busSearch.value
+            );
+
+        }
+    );
+
+
+    busSearch.addEventListener(
+        "keydown",
+        event => {
+
+            if (event.key === "Enter") {
+
+                const firstResult =
+                    searchResults.querySelector(
+                        "[data-search-bus]"
+                    );
+
+
+                if (firstResult) {
+
+                    firstResult.click();
+
+                }
+
+            }
+
+
+            if (event.key === "Escape") {
+
+                busSearch.value = "";
+
+                searchBuses("");
+
+            }
+
+        }
+    );
+
+}
+
+
+if (clearSearch) {
+
+    clearSearch.addEventListener(
+        "click",
+        () => {
+
+            busSearch.value = "";
+
+            searchBuses("");
+
+            busSearch.focus();
+
+        }
+    );
+
+}
+
+
+document.addEventListener(
+    "click",
+    event => {
+
+        if (
+            !event.target.closest(
+                ".navbar-search"
+            )
+        ) {
+
+            searchResults.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
 });
