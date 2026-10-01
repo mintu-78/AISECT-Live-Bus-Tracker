@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const busName =
         document.getElementById("busName");
 
+    const changeBus =
+        document.getElementById("changeBus");
+
     const startTracking =
         document.getElementById("startTracking");
 
@@ -18,6 +21,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const longitude =
         document.getElementById("longitude");
 
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+    const popup =
+        document.getElementById("busSelectionPopup");
+
+    const closeBusPopup =
+        document.getElementById("closeBusPopup");
+
+    const busButtons =
+        document.querySelectorAll(".bus-option");
+
 
     const validBuses = [
         "bus1",
@@ -29,215 +44,355 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
 
-    let selectedBus = null;
+    let selectedBus =
+        localStorage.getItem("selectedBus");
+
     let watchId = null;
 
 
     /* =========================
-       CREATE BUS SELECTION POPUP
+       THEME
     ========================== */
 
-    const popup = document.createElement("div");
+    const savedTheme =
+        localStorage.getItem("driver-theme");
 
-    popup.id = "busSelectionPopup";
+    if (savedTheme === "dark") {
 
-    popup.innerHTML = `
-        <div class="bus-popup-box">
+        document.body.classList.add("dark");
 
-            <div class="bus-popup-icon">
-                🚌
-            </div>
+        if (themeToggle) {
+            themeToggle.textContent = "☀️";
+        }
 
-            <h2>Select Your Bus</h2>
+    }
 
-            <p>
-                Select the bus you want to track
-            </p>
 
-            <div class="bus-list">
+    if (themeToggle) {
 
-                <button data-bus="bus1">
-                    🚌 AISECT Bus 01
-                </button>
+        themeToggle.addEventListener(
+            "click",
+            () => {
 
-                <button data-bus="bus2">
-                    🚌 AISECT Bus 02
-                </button>
+                document.body.classList.toggle("dark");
 
-                <button data-bus="bus3">
-                    🚌 AISECT Bus 03
-                </button>
+                const isDark =
+                    document.body.classList.contains("dark");
 
-                <button data-bus="bus4">
-                    🚌 AISECT Bus 04
-                </button>
+                localStorage.setItem(
+                    "driver-theme",
+                    isDark ? "dark" : "light"
+                );
 
-                <button data-bus="bus5">
-                    🚌 AISECT Bus 05
-                </button>
+                themeToggle.textContent =
+                    isDark ? "☀️" : "🌙";
 
-                <button data-bus="bus6">
-                    🚌 AISECT Bus 06
-                </button>
+            }
+        );
 
-            </div>
-
-        </div>
-    `;
-
-    document.body.appendChild(popup);
+    }
 
 
     /* =========================
-       POPUP STYLE
+       UPDATE BUS UI
     ========================== */
 
-    const popupStyle = document.createElement("style");
+    function updateBusUI() {
 
-    popupStyle.textContent = `
-        #busSelectionPopup {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
+        if (!selectedBus) {
+            return;
         }
 
-        .bus-popup-box {
-            width: min(420px, 100%);
-            padding: 30px 24px;
-            border-radius: 24px;
-            background: #ffffff;
-            text-align: center;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
-        }
+        const number =
+            selectedBus.replace("bus", "");
 
-        .bus-popup-icon {
-            font-size: 48px;
-            margin-bottom: 8px;
-        }
+        if (busName) {
 
-        .bus-popup-box h2 {
-            margin: 0;
-            font-size: 26px;
-        }
-
-        .bus-popup-box p {
-            margin: 8px 0 22px;
-            color: #666;
-        }
-
-        .bus-list {
-            display: grid;
-            gap: 10px;
-        }
-
-        .bus-list button {
-            width: 100%;
-            padding: 14px 16px;
-            border: none;
-            border-radius: 12px;
-            background: #f1f5f9;
-            color: #111827;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .bus-list button:hover {
-            transform: translateY(-2px);
-            background: #e2e8f0;
-        }
-
-        .bus-list button:active {
-            transform: scale(0.98);
-        }
-
-        @media (max-width: 480px) {
-
-            .bus-popup-box {
-                padding: 25px 18px;
-            }
-
-            .bus-popup-box h2 {
-                font-size: 23px;
-            }
+            busName.textContent =
+                "Bus " + number;
 
         }
-    `;
-
-    document.head.appendChild(popupStyle);
 
 
-    /* =========================
-       SELECT BUS
-    ========================== */
-
-    const busButtons =
-        popup.querySelectorAll("[data-bus]");
-
-
-    busButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
+        busButtons.forEach(button => {
 
             const busId =
                 button.getAttribute("data-bus");
 
-
-            if (!validBuses.includes(busId)) {
-
-                return;
-
-            }
-
-
-            selectedBus = busId;
-
-            localStorage.setItem(
-                "selectedBus",
-                selectedBus
+            button.classList.toggle(
+                "selected",
+                busId === selectedBus
             );
 
+        });
 
-            const number =
-                selectedBus.replace("bus", "");
+    }
 
 
-            if (busName) {
+    /* =========================
+       OPEN POPUP
+    ========================== */
 
-                busName.innerText =
-                    "Bus " + number;
+    function openBusPopup() {
+
+        if (!popup) {
+            return;
+        }
+
+        updateBusUI();
+
+        popup.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+
+    /* =========================
+       CLOSE POPUP
+    ========================== */
+
+    function closePopup() {
+
+        if (!popup) {
+            return;
+        }
+
+        popup.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    if (changeBus) {
+
+        changeBus.addEventListener(
+            "click",
+            openBusPopup
+        );
+
+    }
+
+
+    if (closeBusPopup) {
+
+        closeBusPopup.addEventListener(
+            "click",
+            closePopup
+        );
+
+    }
+
+
+    if (popup) {
+
+        popup.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === popup
+                ) {
+
+                    closePopup();
+
+                }
 
             }
+        );
+
+    }
 
 
-            popup.remove();
+    /* =========================
+       STOP CURRENT TRACKING
+    ========================== */
+
+    async function stopCurrentBus() {
+
+        if (!selectedBus) {
+            return;
+        }
 
 
-            requestLocationAndStart();
+        if (watchId !== null) {
 
-        });
+            navigator.geolocation.clearWatch(
+                watchId
+            );
+
+            watchId = null;
+
+        }
+
+
+        try {
+
+            await database
+                .ref(
+                    "buses/" +
+                    selectedBus
+                )
+                .update({
+
+                    lat: null,
+
+                    lng: null,
+
+                    status: "Offline",
+
+                    location: "Trip Ended",
+
+                    updatedAt: Date.now()
+
+                });
+
+        } catch (error) {
+
+            console.error(
+                "Firebase stop error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =========================
+       CHANGE BUS
+    ========================== */
+
+    busButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            async () => {
+
+                const newBus =
+                    button.getAttribute("data-bus");
+
+
+                if (
+                    !validBuses.includes(newBus)
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    newBus === selectedBus
+                ) {
+
+                    closePopup();
+
+                    return;
+
+                }
+
+
+                if (
+                    watchId !== null
+                ) {
+
+                    const confirmSwitch =
+                        confirm(
+                            "Current bus tracking is active.\n\nSwitching bus will stop the current trip. Continue?"
+                        );
+
+                    if (!confirmSwitch) {
+                        return;
+                    }
+
+                    await stopCurrentBus();
+
+                }
+
+
+                selectedBus = newBus;
+
+
+                localStorage.setItem(
+                    "selectedBus",
+                    selectedBus
+                );
+
+
+                if (latitude) {
+
+                    latitude.textContent =
+                        "--";
+
+                }
+
+
+                if (longitude) {
+
+                    longitude.textContent =
+                        "--";
+
+                }
+
+
+                if (tripStatus) {
+
+                    tripStatus.innerHTML =
+                        "🔴 Trip Not Started";
+
+                }
+
+
+                if (startTracking) {
+
+                    startTracking.disabled =
+                        false;
+
+                    startTracking.innerHTML =
+                        "▶️ Start Live Tracking";
+
+                }
+
+
+                updateBusUI();
+
+                closePopup();
+
+            }
+        );
 
     });
 
 
     /* =========================
-       LOCATION + START TRACKING
+       START LIVE TRACKING
     ========================== */
 
-    function requestLocationAndStart() {
+    function startLiveTracking() {
+
+        if (!selectedBus) {
+
+            openBusPopup();
+
+            return;
+
+        }
+
 
         if (!navigator.geolocation) {
 
             alert(
-                "Your browser does not support location."
+                "Your browser does not support Geolocation."
             );
+
+            return;
+
+        }
+
+
+        if (watchId !== null) {
 
             return;
 
@@ -246,7 +401,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (startTracking) {
 
-            startTracking.disabled = true;
+            startTracking.disabled =
+                true;
 
             startTracking.innerHTML =
                 "📍 Getting Location...";
@@ -387,25 +543,19 @@ document.addEventListener("DOMContentLoaded", () => {
                             "Location permission denied. Please allow location access."
                         );
 
-                    }
-
-                    else if (error.code === 2) {
+                    } else if (error.code === 2) {
 
                         alert(
                             "Location is currently unavailable."
                         );
 
-                    }
-
-                    else if (error.code === 3) {
+                    } else if (error.code === 3) {
 
                         alert(
                             "Location request timed out. Please try again."
                         );
 
-                    }
-
-                    else {
+                    } else {
 
                         alert(
                             "Unable to get your location."
@@ -434,6 +584,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    if (startTracking) {
+
+        startTracking.addEventListener(
+            "click",
+            startLiveTracking
+        );
+
+    }
+
+
     /* =========================
        STOP LIVE TRACKING
     ========================== */
@@ -442,9 +602,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         stopTracking.addEventListener(
             "click",
-            () => {
+            async () => {
 
                 if (!selectedBus) {
+
+                    openBusPopup();
 
                     return;
 
@@ -462,35 +624,38 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                database
-                    .ref(
-                        "buses/" +
-                        selectedBus
-                    )
-                    .update({
+                try {
 
-                        lat: null,
+                    await database
+                        .ref(
+                            "buses/" +
+                            selectedBus
+                        )
+                        .update({
 
-                        lng: null,
+                            lat: null,
 
-                        status:
-                            "Offline",
+                            lng: null,
 
-                        location:
-                            "Trip Ended",
+                            status:
+                                "Offline",
 
-                        updatedAt:
-                            Date.now()
+                            location:
+                                "Trip Ended",
 
-                    })
-                    .catch(error => {
+                            updatedAt:
+                                Date.now()
 
-                        console.error(
-                            "Firebase stop update error:",
-                            error
-                        );
+                        });
 
-                    });
+                } catch (error) {
+
+                    console.error(
+                        "Firebase stop error:",
+                        error
+                    );
+
+                }
 
 
                 if (tripStatus) {
@@ -529,6 +694,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
         );
+
+    }
+
+
+    /* =========================
+       INITIAL BUS
+    ========================== */
+
+    if (
+        selectedBus &&
+        validBuses.includes(selectedBus)
+    ) {
+
+        updateBusUI();
+
+    } else {
+
+        selectedBus = null;
+
+        localStorage.removeItem(
+            "selectedBus"
+        );
+
+        openBusPopup();
 
     }
 

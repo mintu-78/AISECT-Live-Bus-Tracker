@@ -1,50 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Panel</title>
 
-    <link rel="stylesheet" href="css/driver.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="AISECT Live Bus Tracker Driver Panel"
+    >
+
+    <title>Driver Panel | AISECT Live Bus Tracker</title>
+
+    <link
+        rel="stylesheet"
+        href="css/driver.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
 </head>
+
 <body>
 
-<div class="driver-container">
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
 
-    <h1>🚌 Driver Panel</h1>
+    <main class="driver-container">
 
-    <h2 id="busName">Bus 1</h2>
+        <div class="top-bar">
 
-   <div class="status" id="tripStatus">
-    🔴 Trip Not Started
-</div>
+            <div class="brand">
+                <span class="brand-icon">🚌</span>
 
-<button id="startTracking">
-    ▶️ Start Live Tracking
-</button>
-<button id="stopTracking">
-    ⏹ Stop Trip
-</button>
-    <div class="location-card">
+                <div>
+                    <span class="brand-title">
+                        AISECT
+                    </span>
 
-        <p>Latitude</p>
-        <h3 id="latitude">--</h3>
+                    <span class="brand-subtitle">
+                        Live Bus Tracker
+                    </span>
+                </div>
+            </div>
 
-        <p>Longitude</p>
-        <h3 id="longitude">--</h3>
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Toggle dark mode"
+            >
+                🌙
+            </button>
+
+        </div>
+
+
+        <div class="panel-header">
+
+            <div class="panel-label">
+                DRIVER PANEL
+            </div>
+
+            <h1>
+                Live Bus Control
+            </h1>
+
+            <p>
+                Manage your selected bus and live GPS tracking.
+            </p>
+
+        </div>
+
+
+        <section class="bus-section">
+
+            <div class="bus-info">
+
+                <div class="bus-icon">
+                    🚌
+                </div>
+
+                <div class="bus-details">
+
+                    <span class="small-label">
+                        SELECTED BUS
+                    </span>
+
+                    <h2 id="busName">
+                        Bus 1
+                    </h2>
+
+                </div>
+
+                <button
+                    id="changeBus"
+                    class="change-bus-btn"
+                    type="button"
+                >
+                    🔄 Change Bus
+                </button>
+
+            </div>
+
+
+            <div
+                class="status"
+                id="tripStatus"
+            >
+                🔴 Trip Not Started
+            </div>
+
+
+            <div class="control-buttons">
+
+                <button
+                    id="startTracking"
+                    type="button"
+                >
+                    ▶️ Start Live Tracking
+                </button>
+
+                <button
+                    id="stopTracking"
+                    type="button"
+                >
+                    ⏹ Stop Trip
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="location-card">
+
+            <div class="location-header">
+
+                <div>
+                    <span class="small-label">
+                        LIVE GPS
+                    </span>
+
+                    <h3>
+                        Current Location
+                    </h3>
+                </div>
+
+                <div class="gps-indicator">
+                    <span></span>
+                    GPS
+                </div>
+
+            </div>
+
+
+            <div class="coordinates">
+
+                <div class="coordinate-box">
+
+                    <div class="coordinate-icon">
+                        📍
+                    </div>
+
+                    <div>
+                        <p>
+                            Latitude
+                        </p>
+
+                        <strong id="latitude">
+                            --
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="coordinate-box">
+
+                    <div class="coordinate-icon">
+                        🌐
+                    </div>
+
+                    <div>
+                        <p>
+                            Longitude
+                        </p>
+
+                        <strong id="longitude">
+                            --
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="footer-text">
+            AISECT Live Bus Tracker • Driver Control Panel
+        </div>
+
+    </main>
+
+
+    <div
+        id="busSelectionPopup"
+        class="popup-overlay"
+    >
+
+        <div class="bus-popup">
+
+            <button
+                id="closeBusPopup"
+                class="popup-close"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <div class="popup-icon">
+                🚌
+            </div>
+
+            <span class="popup-label">
+                BUS MANAGEMENT
+            </span>
+
+            <h2>
+                Select Your Bus
+            </h2>
+
+            <p>
+                Choose the bus you want to control.
+            </p>
+
+
+            <div class="bus-list">
+
+                <button
+                    class="bus-option"
+                    data-bus="bus1"
+                    type="button"
+                >
+                    <span>🚌</span>
+                    <strong>AISECT Bus 01</strong>
+                    <small>BUS 01</small>
+                </button>
+
+                <button
+                    class="bus-option"
+                    data-bus="bus2"
+                    type="button"
+                >
+                    <span>🚌</span>
+                    <strong>AISECT Bus 02</strong>
+                    <small>BUS 02</small>
+                </button>
+
+                <button
+                    class="bus-option"
+                    data-bus="bus3"
+                    type="button"
+                >
+                    <span>🚌</span>
+                    <strong>AISECT Bus 03</strong>
+                    <small>BUS 03</small>
+                </button>
+
+                <button
+                    class="bus-option"
+                    data-bus="bus4"
+                    type="button"
+                >
+                    <span>🚌</span>
+                    <strong>AISECT Bus 04</strong>
+                    <small>BUS 04</small>
+                </button>
+
+                <button
+                    class="bus-option"
+                    data-bus="bus5"
+                    type="button"
+                >
+                    <span>🚌</span>
+                    <strong>AISECT Bus 05</strong>
+                    <small>BUS 05</small>
+                </button>
+
+                <button
+                    class="bus-option"
+                    data-bus="bus6"
+                    type="button"
+                >
+                    <span>🚌</span>
+                    <strong>AISECT Bus 06</strong>
+                    <small>BUS 06</small>
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
-</div>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-<script src="js/firebase.js"></script>
+    <script src="js/firebase.js"></script>
 
-<script src="js/driver.js"></script>
+    <script src="js/driver.js"></script>
 
 </body>
 </html>
